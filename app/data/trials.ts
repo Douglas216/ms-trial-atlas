@@ -11,6 +11,15 @@ export type PrimaryEndpointCategory =
   | "composite"
   | "other";
 
+export type Publication = {
+  title: string;
+  firstAuthor: string;
+  journal: string;
+  year: number;
+  doi: string;
+  url: string;
+};
+
 export type Trial = {
   id: string;
   slug: string;
@@ -23,6 +32,7 @@ export type Trial = {
   startDate: string | null;
   primaryCompletionDate: string | null;
   publicationYear: number | null;
+  publication?: Publication;
   nctIds: string[];
   protocolIds: string[];
   sourceUrls: string[];
@@ -127,9 +137,21 @@ export const trials: Trial[] = [
     startDate: "2001-11",
     primaryCompletionDate: "2004-11",
     publicationYear: 2006,
+    publication: {
+      title:
+        "A randomized, placebo-controlled trial of natalizumab for relapsing multiple sclerosis",
+      firstAuthor: "Polman CH",
+      journal: "New England Journal of Medicine",
+      year: 2006,
+      doi: "10.1056/NEJMoa044397",
+      url: "https://doi.org/10.1056/NEJMoa044397",
+    },
     nctIds: ["NCT00027300"],
     protocolIds: ["C-1801"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT00027300"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT00027300",
+      "https://pubmed.ncbi.nlm.nih.gov/16510744/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -144,9 +166,21 @@ export const trials: Trial[] = [
     startDate: "2006-01",
     primaryCompletionDate: "2009-07",
     publicationYear: 2010,
+    publication: {
+      title:
+        "A placebo-controlled trial of oral fingolimod in relapsing multiple sclerosis",
+      firstAuthor: "Kappos L",
+      journal: "New England Journal of Medicine",
+      year: 2010,
+      doi: "10.1056/NEJMoa0909494",
+      url: "https://doi.org/10.1056/NEJMoa0909494",
+    },
     nctIds: ["NCT00289978"],
     protocolIds: ["CFTY720D2301"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT00289978"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT00289978",
+      "https://pubmed.ncbi.nlm.nih.gov/20089952/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -195,9 +229,21 @@ export const trials: Trial[] = [
     startDate: "2005-04",
     primaryCompletionDate: "2008-11",
     publicationYear: 2010,
+    publication: {
+      title:
+        "A placebo-controlled trial of oral cladribine for relapsing multiple sclerosis",
+      firstAuthor: "Giovannoni G",
+      journal: "New England Journal of Medicine",
+      year: 2010,
+      doi: "10.1056/NEJMoa0902533",
+      url: "https://doi.org/10.1056/NEJMoa0902533",
+    },
     nctIds: ["NCT00213135"],
     protocolIds: ["25643"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT00213135"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT00213135",
+      "https://pubmed.ncbi.nlm.nih.gov/20089960/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -212,9 +258,20 @@ export const trials: Trial[] = [
     startDate: "2004-09",
     primaryCompletionDate: "2010-07",
     publicationYear: 2011,
+    publication: {
+      title: "Randomized trial of oral teriflunomide for relapsing multiple sclerosis",
+      firstAuthor: "O'Connor P",
+      journal: "New England Journal of Medicine",
+      year: 2011,
+      doi: "10.1056/NEJMoa1014656",
+      url: "https://doi.org/10.1056/NEJMoa1014656",
+    },
     nctIds: ["NCT00134563"],
     protocolIds: ["EFC6049"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT00134563"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT00134563",
+      "https://pubmed.ncbi.nlm.nih.gov/21991951/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -229,9 +286,21 @@ export const trials: Trial[] = [
     startDate: "2008-02",
     primaryCompletionDate: "2012-12",
     publicationYear: 2014,
+    publication: {
+      title:
+        "Oral teriflunomide for patients with a first clinical episode suggestive of multiple sclerosis (TOPIC): a randomised, double-blind, placebo-controlled, phase 3 trial",
+      firstAuthor: "Miller AE",
+      journal: "The Lancet Neurology",
+      year: 2014,
+      doi: "10.1016/S1474-4422(14)70191-7",
+      url: "https://doi.org/10.1016/S1474-4422(14)70191-7",
+    },
     nctIds: ["NCT00622700"],
     protocolIds: ["EFC6260", "HMR1726D-3005"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT00622700"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT00622700",
+      "https://pubmed.ncbi.nlm.nih.gov/25192851/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -246,9 +315,21 @@ export const trials: Trial[] = [
     startDate: "2008-08",
     primaryCompletionDate: "2012-04",
     publicationYear: 2014,
+    publication: {
+      title:
+        "Oral teriflunomide for patients with relapsing multiple sclerosis (TOWER): a randomised, double-blind, placebo-controlled, phase 3 trial",
+      firstAuthor: "Confavreux C",
+      journal: "The Lancet Neurology",
+      year: 2014,
+      doi: "10.1016/S1474-4422(13)70308-9",
+      url: "https://doi.org/10.1016/S1474-4422(13)70308-9",
+    },
     nctIds: ["NCT00751881"],
     protocolIds: ["EFC10531"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT00751881"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT00751881",
+      "https://pubmed.ncbi.nlm.nih.gov/24461574/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -263,9 +344,21 @@ export const trials: Trial[] = [
     startDate: "2007-06",
     primaryCompletionDate: "2011-08",
     publicationYear: 2012,
+    publication: {
+      title:
+        "Placebo-controlled phase 3 study of oral BG-12 or glatiramer in multiple sclerosis",
+      firstAuthor: "Fox RJ",
+      journal: "New England Journal of Medicine",
+      year: 2012,
+      doi: "10.1056/NEJMoa1206328",
+      url: "https://doi.org/10.1056/NEJMoa1206328",
+    },
     nctIds: ["NCT00451451"],
     protocolIds: ["109MS302"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT00451451"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT00451451",
+      "https://pubmed.ncbi.nlm.nih.gov/22992072/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -280,9 +373,20 @@ export const trials: Trial[] = [
     startDate: "2007-01",
     primaryCompletionDate: "2011-02",
     publicationYear: 2012,
+    publication: {
+      title: "Placebo-controlled phase 3 study of oral BG-12 for relapsing multiple sclerosis",
+      firstAuthor: "Gold R",
+      journal: "New England Journal of Medicine",
+      year: 2012,
+      doi: "10.1056/NEJMoa1114287",
+      url: "https://doi.org/10.1056/NEJMoa1114287",
+    },
     nctIds: ["NCT00420212"],
     protocolIds: ["109MS301"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT00420212"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT00420212",
+      "https://pubmed.ncbi.nlm.nih.gov/22992073/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -297,9 +401,20 @@ export const trials: Trial[] = [
     startDate: "2002-12",
     primaryCompletionDate: "2007-09",
     publicationYear: 2008,
+    publication: {
+      title: "Alemtuzumab vs. interferon beta-1a in early multiple sclerosis",
+      firstAuthor: "Coles AJ",
+      journal: "New England Journal of Medicine",
+      year: 2008,
+      doi: "10.1056/NEJMoa0802670",
+      url: "https://doi.org/10.1056/NEJMoa0802670",
+    },
     nctIds: ["NCT00050778"],
     protocolIds: ["CAMMS223"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT00050778"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT00050778",
+      "https://pubmed.ncbi.nlm.nih.gov/18946064/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -314,9 +429,21 @@ export const trials: Trial[] = [
     startDate: "2007-08",
     primaryCompletionDate: "2011-04",
     publicationYear: 2012,
+    publication: {
+      title:
+        "Alemtuzumab versus interferon beta 1a as first-line treatment for patients with relapsing-remitting multiple sclerosis: a randomised controlled phase 3 trial",
+      firstAuthor: "Cohen JA",
+      journal: "The Lancet",
+      year: 2012,
+      doi: "10.1016/S0140-6736(12)61769-3",
+      url: "https://doi.org/10.1016/S0140-6736(12)61769-3",
+    },
     nctIds: ["NCT00530348"],
     protocolIds: ["CAMMS323"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT00530348"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT00530348",
+      "https://pubmed.ncbi.nlm.nih.gov/23122652/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -331,9 +458,21 @@ export const trials: Trial[] = [
     startDate: "2012-12-20",
     primaryCompletionDate: "2016-04-29",
     publicationYear: 2018,
+    publication: {
+      title:
+        "Siponimod versus placebo in secondary progressive multiple sclerosis (EXPAND): a double-blind, randomised, phase 3 study",
+      firstAuthor: "Kappos L",
+      journal: "The Lancet",
+      year: 2018,
+      doi: "10.1016/S0140-6736(18)30475-6",
+      url: "https://doi.org/10.1016/S0140-6736(18)30475-6",
+    },
     nctIds: ["NCT01665144"],
     protocolIds: ["CBAF312A2304"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT01665144"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT01665144",
+      "https://pubmed.ncbi.nlm.nih.gov/29576505/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -348,11 +487,20 @@ export const trials: Trial[] = [
     startDate: "2011-08-31",
     primaryCompletionDate: "2015-05-12",
     publicationYear: 2017,
+    publication: {
+      title: "Ocrelizumab versus Interferon Beta-1a in Relapsing Multiple Sclerosis",
+      firstAuthor: "Hauser SL",
+      journal: "New England Journal of Medicine",
+      year: 2017,
+      doi: "10.1056/NEJMoa1601277",
+      url: "https://doi.org/10.1056/NEJMoa1601277",
+    },
     nctIds: ["NCT01247324", "NCT01412333"],
     protocolIds: ["WA21092", "WA21093"],
     sourceUrls: [
       "https://clinicaltrials.gov/study/NCT01247324",
       "https://clinicaltrials.gov/study/NCT01412333",
+      "https://pubmed.ncbi.nlm.nih.gov/28002679/",
     ],
     dataStatus: "verified",
   },
@@ -368,9 +516,20 @@ export const trials: Trial[] = [
     startDate: "2011-03-02",
     primaryCompletionDate: "2015-07-23",
     publicationYear: 2017,
+    publication: {
+      title: "Ocrelizumab versus Placebo in Primary Progressive Multiple Sclerosis",
+      firstAuthor: "Montalban X",
+      journal: "New England Journal of Medicine",
+      year: 2017,
+      doi: "10.1056/NEJMoa1606468",
+      url: "https://doi.org/10.1056/NEJMoa1606468",
+    },
     nctIds: ["NCT01194570"],
     protocolIds: ["WA25046"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT01194570"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT01194570",
+      "https://pubmed.ncbi.nlm.nih.gov/28002688/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -385,9 +544,21 @@ export const trials: Trial[] = [
     startDate: "2014-12-03",
     primaryCompletionDate: "2016-12-22",
     publicationYear: 2019,
+    publication: {
+      title:
+        "Safety and efficacy of ozanimod versus interferon beta-1a in relapsing multiple sclerosis (SUNBEAM): a multicentre, randomised, minimum 12-month, phase 3 trial",
+      firstAuthor: "Comi G",
+      journal: "The Lancet Neurology",
+      year: 2019,
+      doi: "10.1016/S1474-4422(19)30239-X",
+      url: "https://doi.org/10.1016/S1474-4422(19)30239-X",
+    },
     nctIds: ["NCT02294058"],
     protocolIds: ["RPC01-301"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT02294058"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT02294058",
+      "https://pubmed.ncbi.nlm.nih.gov/31492651/",
+    ],
     dataStatus: "verified",
   },
   {
@@ -402,9 +573,21 @@ export const trials: Trial[] = [
     startDate: "2015-06-04",
     primaryCompletionDate: "2019-05-16",
     publicationYear: 2021,
+    publication: {
+      title:
+        "Ponesimod Compared With Teriflunomide in Patients With Relapsing Multiple Sclerosis in the Active-Comparator Phase 3 OPTIMUM Study: A Randomized Clinical Trial",
+      firstAuthor: "Kappos L",
+      journal: "JAMA Neurology",
+      year: 2021,
+      doi: "10.1001/jamaneurol.2021.0405",
+      url: "https://doi.org/10.1001/jamaneurol.2021.0405",
+    },
     nctIds: ["NCT02425644"],
     protocolIds: ["AC-058B301"],
-    sourceUrls: ["https://clinicaltrials.gov/study/NCT02425644"],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT02425644",
+      "https://pubmed.ncbi.nlm.nih.gov/33779698/",
+    ],
     dataStatus: "verified",
   },
 ];

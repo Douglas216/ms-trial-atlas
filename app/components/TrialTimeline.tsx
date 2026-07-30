@@ -1,20 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, FocusEvent, MouseEvent } from "react";
-import type { Trial } from "../data/trials";
+import type { Publication, Trial } from "../data/trials";
 
-type TooltipState = {
-  trial: Trial;
+type TooltipPosition = {
   left: number;
   top: number;
   placement: "above" | "below";
-} | null;
+};
+
+type TooltipState =
+  | ({ kind: "trial"; trial: Trial } & TooltipPosition)
+  | ({
+      kind: "publication";
+      trial: Trial;
+      publication: Publication;
+    } & TooltipPosition)
+  | null;
 
 const YEAR_WIDTH = 92;
 const ROW_HEIGHT = 58;
-const TOOLTIP_WIDTH = 316;
+const TRIAL_TOOLTIP_WIDTH = 316;
+const PUBLICATION_TOOLTIP_WIDTH = 360;
 
 function parseDate(value: string) {
   const normalized =
@@ -66,14 +75,18 @@ function formatEndpoint(value: Trial["primaryEndpointCategory"]) {
   }[value];
 }
 
-function TimelineTooltip({ state }: { state: NonNullable<TooltipState> }) {
+function TrialTooltip({
+  state,
+}: {
+  state: Extract<NonNullable<TooltipState>, { kind: "trial" }>;
+}) {
   const { trial, left, top, placement } = state;
   return (
     <div
       className={`trial-tooltip trial-tooltip--${placement}`}
       role="tooltip"
-      id={`tooltip-${trial.id}`}
-      style={{ left, top, width: TOOLTIP_WIDTH }}
+      id={`trial-tooltip-${trial.id}`}
+      style={{ left, top, width: TRIAL_TOOLTIP_WIDTH }}
     >
       <p className="tooltip-title">{trial.studyName}</p>
       <dl>
@@ -110,8 +123,55 @@ function TimelineTooltip({ state }: { state: NonNullable<TooltipState> }) {
   );
 }
 
+function PublicationTooltip({
+  state,
+  cancelHide,
+  scheduleHide,
+}: {
+  state: Extract<NonNullable<TooltipState>, { kind: "publication" }>;
+  cancelHide: () => void;
+  scheduleHide: () => void;
+}) {
+  const { trial, publication, left, top, placement } = state;
+  return (
+    <div
+      className={`publication-tooltip publication-tooltip--${placement}`}
+      role="tooltip"
+      id={`publication-tooltip-${trial.id}`}
+      style={{ left, top, width: PUBLICATION_TOOLTIP_WIDTH }}
+      onMouseEnter={cancelHide}
+      onMouseLeave={scheduleHide}
+      onFocus={cancelHide}
+      onBlur={scheduleHide}
+    >
+      <p className="publication-tooltip-title">{publication.title}</p>
+      <p className="publication-tooltip-byline">{publication.firstAuthor} et al.</p>
+      <p className="publication-tooltip-journal">
+        {publication.journal}, {publication.year}
+      </p>
+      <a
+        className="publication-tooltip-doi"
+        href={publication.url}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        DOI: {publication.doi}
+      </a>
+      <a
+        className="publication-tooltip-open"
+        href={publication.url}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        Open publication <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  );
+}
+
 export function TrialTimeline({ trials }: { trials: Trial[] }) {
   const [tooltip, setTooltip] = useState<TooltipState>(null);
+  const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const datedTrials = useMemo(
     () =>
@@ -135,8 +195,8 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
     const allTimes = datedTrials.flatMap((trial) => [
       parseDate(trial.startDate!).getTime(),
       parseDate(trial.primaryCompletionDate!).getTime(),
-      trial.publicationYear
-        ? Date.UTC(trial.publicationYear, 6, 1)
+      trial.publication
+        ? Date.UTC(trial.publication.year, 6, 1)
         : parseDate(trial.primaryCompletionDate!).getTime(),
     ]);
     const firstYear = new Date(Math.min(...allTimes)).getUTCFullYear();
@@ -160,37 +220,90 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
     return ((time - minTime) / (maxTime - minTime)) * plotWidth;
   };
 
-  const showTooltip = (
+  const tooltipPosition = (
+    event:
+      | MouseEvent<HTMLAnchorElement>
+      | FocusEvent<HTMLAnchorElement>,
+    width: number,
+  ): TooltipPosition => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const left = Math.max(
+      12,
+      Math.min(
+        window.innerWidth - width - 12,
+        rect.left + rect.width / 2 - width / 2,
+      ),
+    );
+    const spaceAbove = rect.top;
+    const placement = spaceAbove > 370 ? "above" : "below";
+    return {
+      left,
+      top: placement === "above" ? rect.top - 12 : rect.bottom + 12,
+      placement,
+    };
+  };
+
+  const cancelHide = () => {
+    if (hideTimer.current) {
+      clearTimeout(hideTimer.current);
+      hideTimer.current = null;
+    }
+  };
+
+  const hideTooltip = () => {
+    cancelHide();
+    setTooltip(null);
+  };
+
+  const scheduleHide = () => {
+    cancelHide();
+    hideTimer.current = setTimeout(() => setTooltip(null), 180);
+  };
+
+  const showTrialTooltip = (
     trial: Trial,
     event:
       | MouseEvent<HTMLAnchorElement>
       | FocusEvent<HTMLAnchorElement>,
   ) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const left = Math.max(
-      12,
-      Math.min(
-        window.innerWidth - TOOLTIP_WIDTH - 12,
-        rect.left + rect.width / 2 - TOOLTIP_WIDTH / 2,
-      ),
-    );
-    const spaceAbove = rect.top;
-    const placement = spaceAbove > 370 ? "above" : "below";
+    cancelHide();
     setTooltip({
+      kind: "trial",
       trial,
-      left,
-      top: placement === "above" ? rect.top - 12 : rect.bottom + 12,
-      placement,
+      ...tooltipPosition(event, TRIAL_TOOLTIP_WIDTH),
+    });
+  };
+
+  const showPublicationTooltip = (
+    trial: Trial,
+    publication: Publication,
+    event:
+      | MouseEvent<HTMLAnchorElement>
+      | FocusEvent<HTMLAnchorElement>,
+  ) => {
+    cancelHide();
+    setTooltip({
+      kind: "publication",
+      trial,
+      publication,
+      ...tooltipPosition(event, PUBLICATION_TOOLTIP_WIDTH),
     });
   };
 
   useEffect(() => {
-    const hide = () => setTooltip(null);
+    const hide = () => {
+      if (hideTimer.current) {
+        clearTimeout(hideTimer.current);
+        hideTimer.current = null;
+      }
+      setTooltip(null);
+    };
     window.addEventListener("scroll", hide, true);
     window.addEventListener("resize", hide);
     return () => {
       window.removeEventListener("scroll", hide, true);
       window.removeEventListener("resize", hide);
+      if (hideTimer.current) clearTimeout(hideTimer.current);
     };
   }, []);
 
@@ -200,7 +313,8 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
         <div>
           <p className="section-label">Pivotal randomized periods</p>
           <p className="section-note">
-            Interval bars show study start through primary completion.
+            Solid bars show official study start through primary completion of the
+            pivotal controlled phase. Comparator type is listed in trial details.
           </p>
         </div>
         <div className="publication-key">
@@ -245,8 +359,8 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
                 const left = position(trial.startDate!);
                 const completion = position(trial.primaryCompletionDate!);
                 const width = Math.max(completion - left, 26);
-                const publicationLeft = trial.publicationYear
-                  ? position(Date.UTC(trial.publicationYear, 6, 1))
+                const publicationLeft = trial.publication
+                  ? position(Date.UTC(trial.publication.year, 6, 1))
                   : null;
                 const barStyle = {
                   "--bar-left": `${left}px`,
@@ -257,7 +371,7 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
                 return (
                   <div className="plot-row" style={barStyle} key={trial.id}>
                     <Link
-                      className={`trial-interval comparator-${trial.comparatorType}`}
+                      className="trial-interval"
                       href={`/trials/${trial.slug}`}
                       aria-label={`${trial.studyName}, ${trial.drug}. ${formatDate(
                         trial.startDate,
@@ -265,26 +379,44 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
                         trial.primaryCompletionDate,
                       )}. Open trial profile.`}
                       aria-describedby={
-                        tooltip?.trial.id === trial.id
-                          ? `tooltip-${trial.id}`
+                        tooltip?.kind === "trial" && tooltip.trial.id === trial.id
+                          ? `trial-tooltip-${trial.id}`
                           : undefined
                       }
-                      onMouseEnter={(event) => showTooltip(trial, event)}
-                      onMouseLeave={() => setTooltip(null)}
-                      onFocus={(event) => showTooltip(trial, event)}
-                      onBlur={() => setTooltip(null)}
+                      onMouseEnter={(event) => showTrialTooltip(trial, event)}
+                      onMouseLeave={hideTooltip}
+                      onFocus={(event) => showTrialTooltip(trial, event)}
+                      onBlur={hideTooltip}
                     >
                       <span className="interval-cap interval-cap--start" />
                       <span className="interval-line" />
                       <span className="interval-cap interval-cap--end" />
                     </Link>
-                    {publicationLeft !== null && (
-                      <span
+                    {publicationLeft !== null && trial.publication && (
+                      <a
                         className="publication-marker"
                         style={{ left: publicationLeft }}
-                        title={`Published ${trial.publicationYear}`}
-                        aria-hidden="true"
-                      />
+                        href={trial.publication.url}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label={`${trial.publication.title}. ${trial.publication.firstAuthor} et al. ${trial.publication.journal}, ${trial.publication.year}. Open publication in a new tab.`}
+                        aria-describedby={
+                          tooltip?.kind === "publication" &&
+                          tooltip.trial.id === trial.id
+                            ? `publication-tooltip-${trial.id}`
+                            : undefined
+                        }
+                        onMouseEnter={(event) =>
+                          showPublicationTooltip(trial, trial.publication!, event)
+                        }
+                        onMouseLeave={scheduleHide}
+                        onFocus={(event) =>
+                          showPublicationTooltip(trial, trial.publication!, event)
+                        }
+                        onBlur={scheduleHide}
+                      >
+                        <span className="publication-diamond" aria-hidden="true" />
+                      </a>
                     )}
                   </div>
                 );
@@ -311,12 +443,14 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
               href={`/trials/${trial.slug}`}
               aria-label={`${trial.studyName}, ${trial.drug}. Timeline dates being verified. Open trial profile.`}
               aria-describedby={
-                tooltip?.trial.id === trial.id ? `tooltip-${trial.id}` : undefined
+                tooltip?.kind === "trial" && tooltip.trial.id === trial.id
+                  ? `trial-tooltip-${trial.id}`
+                  : undefined
               }
-              onMouseEnter={(event) => showTooltip(trial, event)}
-              onMouseLeave={() => setTooltip(null)}
-              onFocus={(event) => showTooltip(trial, event)}
-              onBlur={() => setTooltip(null)}
+              onMouseEnter={(event) => showTrialTooltip(trial, event)}
+              onMouseLeave={hideTooltip}
+              onFocus={(event) => showTrialTooltip(trial, event)}
+              onBlur={hideTooltip}
             >
               <span>Dates being verified</span>
             </Link>
@@ -324,7 +458,14 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
         ))}
       </div>
 
-      {tooltip && <TimelineTooltip state={tooltip} />}
+      {tooltip?.kind === "trial" && <TrialTooltip state={tooltip} />}
+      {tooltip?.kind === "publication" && (
+        <PublicationTooltip
+          state={tooltip}
+          cancelHide={cancelHide}
+          scheduleHide={scheduleHide}
+        />
+      )}
       <span className="sr-only">
         Timeline range {minYear} through {maxYear}.
       </span>
