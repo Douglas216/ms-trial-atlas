@@ -46,8 +46,7 @@ a {
 }
 
 .hero {
-  max-width: 900px;
-  margin-bottom: 70px;
+  margin-bottom: 28px;
 }
 
 .hero-kicker,
@@ -73,13 +72,14 @@ a {
 }
 
 .hero-subtitle {
-  max-width: 700px;
+  max-width: none;
   margin: 34px 0 0;
   color: #41535c;
   font-size: clamp(1.15rem, 2vw, 1.48rem);
   font-weight: 370;
   letter-spacing: -0.02em;
   line-height: 1.55;
+  white-space: nowrap;
 }
 
 .timeline-figure {
@@ -195,6 +195,46 @@ a {
 .plot {
   position: relative;
   min-height: 100%;
+}
+
+.today-marker {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: color-mix(in srgb, var(--accent-dark) 76%, transparent);
+  pointer-events: none;
+}
+
+.today-marker::after {
+  position: absolute;
+  top: 52px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  background: var(--accent-dark);
+  border: 2px solid var(--paper-raised);
+  border-radius: 50%;
+  content: "";
+  translate: -50% -50%;
+}
+
+.today-marker span {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  padding: 2px 6px;
+  translate: -50% 0;
+  background: var(--paper-raised);
+  color: var(--accent-dark);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.58rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .axis {
@@ -474,6 +514,14 @@ a {
   line-height: 1.42;
 }
 
+.tooltip-date-note {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.66rem;
+  line-height: 1.38;
+}
+
 .publication-tooltip {
   position: fixed;
   z-index: 52;
@@ -640,6 +688,7 @@ a {
 
   .hero-subtitle {
     margin-top: 25px;
+    white-space: normal;
   }
 
   .timeline-frame {

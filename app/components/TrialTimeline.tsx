@@ -75,6 +75,12 @@ function formatEndpoint(value: Trial["primaryEndpointCategory"]) {
   }[value];
 }
 
+function formatPublicationAuthor(publication: Publication) {
+  return /study group/i.test(publication.firstAuthor)
+    ? publication.firstAuthor
+    : `${publication.firstAuthor} et al.`;
+}
+
 function TrialTooltip({
   state,
 }: {
@@ -112,6 +118,9 @@ function TrialTooltip({
             {trial.startDate && trial.primaryCompletionDate
               ? `${formatDate(trial.startDate)}–${formatDate(trial.primaryCompletionDate)}`
               : "Being verified"}
+            {trial.dateNote && (
+              <span className="tooltip-date-note">{trial.dateNote}</span>
+            )}
           </dd>
         </div>
         <div>
@@ -145,7 +154,9 @@ function PublicationTooltip({
       onBlur={scheduleHide}
     >
       <p className="publication-tooltip-title">{publication.title}</p>
-      <p className="publication-tooltip-byline">{publication.firstAuthor} et al.</p>
+      <p className="publication-tooltip-byline">
+        {formatPublicationAuthor(publication)}
+      </p>
       <p className="publication-tooltip-journal">
         {publication.journal}, {publication.year}
       </p>
@@ -161,7 +172,7 @@ function PublicationTooltip({
   );
 }
 
-export function TrialTimeline({ trials }: { trials: Trial[] }) {
+export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string }) {
   const [tooltip, setTooltip] = useState<TooltipState>(null);
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -184,6 +195,7 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
   );
 
   const { minYear, maxYear, minTime, maxTime, years, plotWidth } = useMemo(() => {
+    const nowTime = parseDate(now).getTime();
     const allTimes = datedTrials.flatMap((trial) => [
       parseDate(trial.startDate!).getTime(),
       parseDate(trial.primaryCompletionDate!).getTime(),
@@ -191,6 +203,7 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
         ? Date.UTC(trial.publication.year, 6, 1)
         : parseDate(trial.primaryCompletionDate!).getTime(),
     ]);
+    allTimes.push(nowTime);
     const firstYear = new Date(Math.min(...allTimes)).getUTCFullYear();
     const lastYear = new Date(Math.max(...allTimes)).getUTCFullYear() + 1;
     const tickYears = Array.from(
@@ -205,12 +218,13 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
       years: tickYears,
       plotWidth: (lastYear - firstYear) * YEAR_WIDTH,
     };
-  }, [datedTrials]);
+  }, [datedTrials, now]);
 
   const position = (date: string | number) => {
     const time = typeof date === "number" ? date : parseDate(date).getTime();
     return ((time - minTime) / (maxTime - minTime)) * plotWidth;
   };
+  const todayLeft = position(now);
 
   const tooltipPosition = (
     event:
@@ -324,6 +338,13 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
 
         <div className="plot-scroller" tabIndex={0} aria-label="Scrollable year axis">
           <div className="plot" style={{ width: plotWidth }}>
+            <div
+              className="today-marker"
+              style={{ left: todayLeft }}
+              aria-hidden="true"
+            >
+              <span>Today</span>
+            </div>
             <div className="axis" style={{ width: plotWidth }}>
               {years.map((year) => {
                 const tickLeft = position(Date.UTC(year, 0, 1));
@@ -384,7 +405,7 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
                         href={trial.publication.url}
                         target="_blank"
                         rel="noreferrer noopener"
-                        aria-label={`${trial.publication.title}. ${trial.publication.firstAuthor} et al. ${trial.publication.journal}, ${trial.publication.year}. Open publication in a new tab.`}
+                        aria-label={`${trial.publication.title}. ${formatPublicationAuthor(trial.publication)} ${trial.publication.journal}, ${trial.publication.year}. Open publication in a new tab.`}
                         aria-describedby={
                           tooltip?.kind === "publication" &&
                           tooltip.trial.id === trial.id
@@ -411,37 +432,41 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
         </div>
       </div>
 
-      <div className="verification-heading">
-        <span>Timeline dates being verified</span>
-        <span>{undatedTrials.length} entries</span>
-      </div>
-
-      <div className="verification-list">
-        {undatedTrials.map((trial) => (
-          <div className="verification-row" key={trial.id}>
-            <div className="study-label">
-              <span>{trial.studyName}</span>
-              <small>{trial.drug}</small>
-            </div>
-            <Link
-              className="verification-lane"
-              href={`/trials/${trial.slug}`}
-              aria-label={`${trial.studyName}, ${trial.drug}. Timeline dates being verified. Open trial profile.`}
-              aria-describedby={
-                tooltip?.kind === "trial" && tooltip.trial.id === trial.id
-                  ? `trial-tooltip-${trial.id}`
-                  : undefined
-              }
-              onMouseEnter={(event) => showTrialTooltip(trial, event)}
-              onMouseLeave={hideTooltip}
-              onFocus={(event) => showTrialTooltip(trial, event)}
-              onBlur={hideTooltip}
-            >
-              <span>Dates being verified</span>
-            </Link>
+      {undatedTrials.length > 0 && (
+        <>
+          <div className="verification-heading">
+            <span>Timeline dates being verified</span>
+            <span>{undatedTrials.length} entries</span>
           </div>
-        ))}
-      </div>
+
+          <div className="verification-list">
+            {undatedTrials.map((trial) => (
+              <div className="verification-row" key={trial.id}>
+                <div className="study-label">
+                  <span>{trial.studyName}</span>
+                  <small>{trial.drug}</small>
+                </div>
+                <Link
+                  className="verification-lane"
+                  href={`/trials/${trial.slug}`}
+                  aria-label={`${trial.studyName}, ${trial.drug}. Timeline dates being verified. Open trial profile.`}
+                  aria-describedby={
+                    tooltip?.kind === "trial" && tooltip.trial.id === trial.id
+                      ? `trial-tooltip-${trial.id}`
+                      : undefined
+                  }
+                  onMouseEnter={(event) => showTrialTooltip(trial, event)}
+                  onMouseLeave={hideTooltip}
+                  onFocus={(event) => showTrialTooltip(trial, event)}
+                  onBlur={hideTooltip}
+                >
+                  <span>Dates being verified</span>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
 
       {tooltip?.kind === "trial" && <TrialTooltip state={tooltip} />}
       {tooltip?.kind === "publication" && (
