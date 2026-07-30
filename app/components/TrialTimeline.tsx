@@ -150,14 +150,6 @@ function PublicationTooltip({
         {publication.journal}, {publication.year}
       </p>
       <a
-        className="publication-tooltip-doi"
-        href={publication.url}
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        DOI: {publication.doi}
-      </a>
-      <a
         className="publication-tooltip-open"
         href={publication.url}
         target="_blank"
@@ -310,16 +302,9 @@ export function TrialTimeline({ trials }: { trials: Trial[] }) {
   return (
     <section className="timeline-figure" aria-label="Pivotal MS trial timeline">
       <div className="timeline-caption">
-        <div>
-          <p className="section-label">Pivotal randomized periods</p>
-          <p className="section-note">
-            Solid bars show official study start through primary completion of the
-            pivotal controlled phase. Comparator type is listed in trial details.
-          </p>
-        </div>
         <div className="publication-key">
           <span aria-hidden="true" />
-          Publication year
+          Landmark publication
         </div>
       </div>
 

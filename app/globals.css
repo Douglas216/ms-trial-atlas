@@ -88,21 +88,10 @@ a {
 
 .timeline-caption {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: flex-end;
   gap: 24px;
   padding: 22px 0 18px;
-}
-
-.timeline-caption .section-label {
-  margin-bottom: 6px;
-  color: var(--ink);
-}
-
-.section-note {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.79rem;
 }
 
 .publication-key {
@@ -549,16 +538,6 @@ a {
   color: var(--muted);
 }
 
-.publication-tooltip-doi {
-  display: block;
-  margin-top: 12px;
-  overflow-wrap: anywhere;
-  color: var(--accent-dark);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.66rem;
-  line-height: 1.5;
-}
-
 .publication-tooltip-open {
   display: inline-flex;
   align-items: center;
@@ -571,9 +550,7 @@ a {
 }
 
 .publication-tooltip-open:hover,
-.publication-tooltip-open:focus-visible,
-.publication-tooltip-doi:hover,
-.publication-tooltip-doi:focus-visible {
+.publication-tooltip-open:focus-visible {
   color: var(--accent);
 }
 
@@ -663,11 +640,6 @@ a {
 
   .hero-subtitle {
     margin-top: 25px;
-  }
-
-  .timeline-caption {
-    align-items: flex-start;
-    flex-direction: column;
   }
 
   .timeline-frame {
