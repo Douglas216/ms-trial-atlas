@@ -709,100 +709,14 @@ a {
   line-height: 1.45;
 }
 
-.profile-era {
-  padding: 23px 0 28px;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--line-strong);
-}
-
-.profile-era-heading,
-.profile-era-caption {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.profile-era-heading h2,
-.profile-era-heading span,
-.profile-era-caption {
-  color: var(--muted);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.61rem;
-  font-weight: 560;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.profile-era-heading h2 {
-  margin: 0;
-}
-
-.profile-era-track {
-  position: relative;
-  height: 42px;
-  margin: 18px 0 12px;
-  border-right: 1px solid var(--line-strong);
-  border-left: 1px solid var(--line-strong);
-  background:
-    linear-gradient(90deg, transparent calc(25% - 1px), var(--line) 25%, transparent calc(25% + 1px)),
-    linear-gradient(90deg, transparent calc(50% - 1px), var(--line) 50%, transparent calc(50% + 1px)),
-    linear-gradient(90deg, transparent calc(75% - 1px), var(--line) 75%, transparent calc(75% + 1px));
-}
-
-.profile-era-start,
-.profile-era-end {
-  position: absolute;
-  bottom: -1px;
-  color: var(--faint);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.56rem;
-}
-
-.profile-era-start {
-  left: 7px;
-}
-
-.profile-era-end {
-  right: 7px;
-}
-
-.profile-era-interval {
-  position: absolute;
-  top: 9px;
-  left: var(--trial-start);
-  width: var(--trial-width);
-  min-width: 8px;
-  height: 8px;
-  background: var(--accent);
-  border-radius: 1px;
-  box-shadow:
-    inset 2px 0 0 var(--accent-dark),
-    inset -2px 0 0 var(--accent-dark);
-}
-
-.profile-era-publication {
-  position: absolute;
-  top: 8px;
-  left: var(--publication-position);
-  width: 9px;
-  height: 9px;
-  translate: -50% 0;
-  rotate: 45deg;
-  background: var(--paper-raised);
-  border: 2px solid var(--accent-dark);
-}
-
-.profile-era-caption {
-  font-size: 0.56rem;
-  letter-spacing: 0.045em;
-  text-transform: none;
-}
-
 .comparison-section,
 .profile-section {
   padding: clamp(72px, 8vw, 118px) 0;
   border-bottom: 1px solid var(--line-strong);
+}
+
+.comparison-section {
+  border-top: 1px solid var(--ink);
 }
 
 .section-heading {
@@ -1580,12 +1494,6 @@ a {
     border-right: 0;
   }
 
-  .profile-era-caption {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 6px;
-  }
-
   .comparison-section,
   .profile-section {
     padding: 64px 0;
@@ -1739,10 +1647,6 @@ a {
 
   .profile-hero h1 {
     font-size: clamp(3rem, 18vw, 4.8rem);
-  }
-
-  .profile-era-heading span {
-    display: none;
   }
 
   .section-heading {

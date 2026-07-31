@@ -1,4 +1,4 @@
-import type { CSSProperties, Metadata } from "react";
+import type { Metadata } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTrialProfile } from "../../data/trialProfiles";
@@ -7,15 +7,6 @@ import { getTrialBySlug, trials } from "../../data/trials";
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
-
-type ProfileStyle = CSSProperties & {
-  "--trial-start"?: string;
-  "--trial-width"?: string;
-  "--publication-position"?: string;
-};
-
-const timelineStart = Date.UTC(1988, 0, 1);
-const timelineEnd = Date.now();
 
 export function generateStaticParams() {
   return trials.map((trial) => ({ slug: trial.slug }));
@@ -33,17 +24,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${trial.studyName} · MS Trial Atlas`,
     description: `${trial.studyName}: pivotal ${trial.drug} trial design, population, outcomes, safety, and sources.`,
   };
-}
-
-function parseAtlasDate(value: string, end = false) {
-  const parts = value.split("-").map(Number);
-  if (parts.length === 1) {
-    return Date.UTC(parts[0], end ? 11 : 0, end ? 31 : 1);
-  }
-  if (parts.length === 2) {
-    return Date.UTC(parts[0], parts[1] - 1 + (end ? 1 : 0), end ? 0 : 1);
-  }
-  return Date.UTC(parts[0], parts[1] - 1, parts[2]);
 }
 
 function formatAtlasDate(value: string | null) {
@@ -86,22 +66,6 @@ export default async function TrialProfilePage({ params }: PageProps) {
   const trialIndex = trials.findIndex((candidate) => candidate.slug === slug);
   const previousTrial = trials[trialIndex - 1];
   const nextTrial = trials[trialIndex + 1];
-  const timelineSpan = timelineEnd - timelineStart;
-  const start = trial.startDate ? parseAtlasDate(trial.startDate) : timelineStart;
-  const end = trial.primaryCompletionDate
-    ? parseAtlasDate(trial.primaryCompletionDate, true)
-    : start;
-  const publication = trial.publicationYear
-    ? Date.UTC(trial.publicationYear, 6, 1)
-    : end;
-  const startPercent = ((start - timelineStart) / timelineSpan) * 100;
-  const endPercent = ((end - timelineStart) / timelineSpan) * 100;
-  const publicationPercent = ((publication - timelineStart) / timelineSpan) * 100;
-  const timelineStyle: ProfileStyle = {
-    "--trial-start": `${Math.max(0, startPercent)}%`,
-    "--trial-width": `${Math.max(0.9, endPercent - startPercent)}%`,
-    "--publication-position": `${Math.min(100, Math.max(0, publicationPercent))}%`,
-  };
 
   return (
     <main className="profile-page">
@@ -141,26 +105,6 @@ export default async function TrialProfilePage({ params }: PageProps) {
             </div>
           </dl>
         </header>
-
-        <section className="profile-era" aria-labelledby="profile-era-title">
-          <div className="profile-era-heading">
-            <h2 id="profile-era-title">Position in the atlas</h2>
-            <span>1988 — Today</span>
-          </div>
-          <div className="profile-era-track" style={timelineStyle}>
-            <span className="profile-era-start">1988</span>
-            <span className="profile-era-end">Today</span>
-            <span className="profile-era-interval" aria-hidden="true" />
-            <span className="profile-era-publication" aria-hidden="true" />
-          </div>
-          <div className="profile-era-caption">
-            <span>
-              Controlled phase · {formatAtlasDate(trial.startDate)} to{" "}
-              {formatAtlasDate(trial.primaryCompletionDate)}
-            </span>
-            <span>Landmark publication · {trial.publicationYear}</span>
-          </div>
-        </section>
 
         <section className="comparison-section" aria-labelledby="comparison-title">
           <div className="section-heading">

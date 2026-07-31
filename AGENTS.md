@@ -260,18 +260,19 @@ Each profile should read like a carefully annotated journal abstract rather
 than a registry dump. Preserve this order:
 
 1. trial identity and a neutral one-sentence significance statement;
-2. compact historical context within the atlas;
-3. a visually dominant intervention-versus-comparator block;
-4. study population and key eligibility;
-5. primary endpoint with arm-level results, followed by selected secondary
+2. a visually dominant intervention-versus-comparator block;
+3. study population and key eligibility;
+4. primary endpoint with arm-level results, followed by selected secondary
    outcomes;
-6. controlled-phase safety;
-7. why the trial mattered and one important limitation.
+5. controlled-phase safety;
+6. why the trial mattered and one important limitation.
 
 On desktop, keep identifiers, sponsor, landmark citation, scientific sources,
 and provenance in a quieter sticky side rail. On small screens, move that
 record below the scientific narrative. Keep neighboring-trial navigation at
-the end of every profile.
+the end of every profile. Do not repeat the homepage timeline or add a
+`Position in the atlas` strip to individual profiles; the trial dates in the
+hero and record rail provide sufficient historical context.
 
 ## Architecture
 
@@ -338,3 +339,6 @@ The current data set is intentionally local and curated.
   interpretation, limitations, identifiers, sponsorship, and source
   provenance. Kept complete protocols and later safety evidence out of the
   profile summaries.
+- **2026-07-31 — Profile hierarchy refinement:** Removed the repeated
+  `Position in the atlas` strip from individual profiles so the page moves
+  directly from trial identity into the intervention-versus-comparator design.
