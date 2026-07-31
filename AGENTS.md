@@ -274,6 +274,10 @@ the end of every profile. Do not repeat the homepage timeline or add a
 `Position in the atlas` strip to individual profiles; the trial dates in the
 hero and record rail provide sufficient historical context.
 
+Within the significance statement, bold named therapies when they are being
+contrasted. When the comparator is placebo, keep the word `placebo` at regular
+weight while retaining emphasis on the named therapy.
+
 ## Architecture
 
 Key files:
@@ -342,3 +346,6 @@ The current data set is intentionally local and curated.
 - **2026-07-31 — Profile hierarchy refinement:** Removed the repeated
   `Position in the atlas` strip from individual profiles so the page moves
   directly from trial identity into the intervention-versus-comparator design.
+- **2026-07-31 — Significance treatment emphasis:** Bold named therapies in
+  profile significance statements, while leaving placebo unbolded to preserve
+  visual focus on the named treatment.

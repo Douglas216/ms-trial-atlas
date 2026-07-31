@@ -54,6 +54,25 @@ function externalLinkProps() {
   return { target: "_blank", rel: "noreferrer" };
 }
 
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function treatmentNamesInSignificance(significance: string, names: string[]) {
+  const treatments = [...new Set(names)]
+    .filter((name) => name.toLowerCase() !== "placebo")
+    .sort((first, second) => second.length - first.length);
+
+  if (!treatments.length) return significance;
+
+  const pattern = new RegExp(`(${treatments.map(escapeRegExp).join("|")})`, "gi");
+  const treatmentSet = new Set(treatments.map((name) => name.toLowerCase()));
+
+  return significance.split(pattern).map((part, index) =>
+    treatmentSet.has(part.toLowerCase()) ? <strong key={index}>{part}</strong> : part,
+  );
+}
+
 export default async function TrialProfilePage({ params }: PageProps) {
   const { slug } = await params;
   const trial = getTrialBySlug(slug);
@@ -66,6 +85,11 @@ export default async function TrialProfilePage({ params }: PageProps) {
   const trialIndex = trials.findIndex((candidate) => candidate.slug === slug);
   const previousTrial = trials[trialIndex - 1];
   const nextTrial = trials[trialIndex + 1];
+  const significance = treatmentNamesInSignificance(profile.significance, [
+    trial.drug,
+    profile.intervention.label,
+    profile.comparator.label,
+  ]);
 
   return (
     <main className="profile-page">
@@ -84,7 +108,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
             <p className="profile-kicker">Landmark controlled trial</p>
             <h1>{trial.studyName}</h1>
             <p className="profile-drug">{trial.drug}</p>
-            <p className="profile-significance">{profile.significance}</p>
+            <p className="profile-significance">{significance}</p>
           </div>
 
           <dl className="hero-facts">

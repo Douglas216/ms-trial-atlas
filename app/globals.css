@@ -679,6 +679,11 @@ a {
   line-height: 1.7;
 }
 
+.profile-significance strong {
+  color: #173747;
+  font-weight: 700;
+}
+
 .hero-facts {
   align-self: end;
   margin: 0;

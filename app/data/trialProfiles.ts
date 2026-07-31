@@ -516,7 +516,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
   transforms: {
     phase: "Phase III",
     significance:
-      "TRANSFORMS directly compared oral fingolimod with an established injectable interferon and showed superior control of relapses over 1 year.",
+      "TRANSFORMS directly compared oral fingolimod with intramuscular interferon beta-1a and showed superior control of relapses over 1 year.",
     design: ["Randomized", "Double-blind", "Double-dummy", "Active-controlled"],
     controlledDuration: "12 months",
     enrollment: "1,292 randomized",
