@@ -353,12 +353,18 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
           </div>
         </div>
 
-        <div className="study-column" aria-hidden="true">
+        <div className="study-column">
           {datedTrials.map((trial) => (
-            <div className="study-label" style={{ height: ROW_HEIGHT }} key={trial.id}>
+            <Link
+              className="study-label study-label--link"
+              href={`/trials/${trial.slug}`}
+              style={{ height: ROW_HEIGHT }}
+              key={trial.id}
+              aria-label={`${trial.studyName}, ${trial.drug}. Open trial profile.`}
+            >
               <span>{trial.studyName}</span>
               <small>{trial.drug}</small>
-            </div>
+            </Link>
           ))}
         </div>
 

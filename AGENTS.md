@@ -202,6 +202,9 @@ Important historical interpretations currently in the data:
 - Comparator information belongs in the trial tooltip/details, not bar fill.
 - Start and end caps mark interval boundaries.
 - Every interval is keyboard-focusable and links to `/trials/[slug]`.
+- Every study/therapy cell in the left column is also keyboard-focusable and
+  links to the same trial profile, giving each row a second clear navigation
+  target.
 
 ### Trial interval tooltip
 
@@ -356,3 +359,6 @@ The current data set is intentionally local and curated.
 - **2026-08-04 — Atlas site icon:** Use a restrained, text-free timeline mark
   in the established paper, navy, and clinical-green palette for browser and
   home-screen icons.
+- **2026-08-04 — Linked study labels:** Make every study/therapy cell in the
+  timeline's left column a full-cell link to its trial profile, with visible
+  hover and keyboard-focus treatment.

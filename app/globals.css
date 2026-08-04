@@ -196,6 +196,27 @@ a {
   white-space: nowrap;
 }
 
+.study-label--link {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.study-label--link:hover,
+.study-label--link:focus-visible {
+  background: var(--accent-soft);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.study-label--link:focus-visible {
+  box-shadow:
+    inset 3px 0 0 var(--accent),
+    inset 0 0 0 2px var(--accent);
+}
+
 .plot-scroller {
   overflow-x: auto;
   overflow-y: hidden;
