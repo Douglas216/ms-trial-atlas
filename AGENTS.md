@@ -349,3 +349,10 @@ The current data set is intentionally local and curated.
 - **2026-07-31 — Significance treatment emphasis:** Bold named therapies in
   profile significance statements, while leaving placebo unbolded to preserve
   visual focus on the named treatment.
+- **2026-08-04 — Persistent timeline orientation:** Keep the study/therapy
+  heading and year axis visible as one sticky header while the user scrolls
+  through trial rows, with the year axis synchronized to horizontal timeline
+  scrolling.
+- **2026-08-04 — Atlas site icon:** Use a restrained, text-free timeline mark
+  in the established paper, navy, and clinical-green palette for browser and
+  home-screen icons.

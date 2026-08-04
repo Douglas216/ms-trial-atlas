@@ -175,6 +175,7 @@ function PublicationTooltip({
 export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string }) {
   const [tooltip, setTooltip] = useState<TooltipState>(null);
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const axisScroller = useRef<HTMLDivElement | null>(null);
 
   const datedTrials = useMemo(
     () =>
@@ -323,29 +324,19 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
       </div>
 
       <div className="timeline-frame">
-        <div className="study-column" aria-hidden="true">
+        <div className="timeline-sticky-header">
           <div className="column-heading">
             <span>Study</span>
             <span>Therapy</span>
           </div>
-          {datedTrials.map((trial) => (
-            <div className="study-label" style={{ height: ROW_HEIGHT }} key={trial.id}>
-              <span>{trial.studyName}</span>
-              <small>{trial.drug}</small>
-            </div>
-          ))}
-        </div>
-
-        <div className="plot-scroller" tabIndex={0} aria-label="Scrollable year axis">
-          <div className="plot" style={{ width: plotWidth }}>
-            <div
-              className="today-marker"
-              style={{ left: todayLeft }}
-              aria-hidden="true"
-            >
-              <span>Today</span>
-            </div>
+          <div className="axis-scroller" ref={axisScroller} aria-hidden="true">
             <div className="axis" style={{ width: plotWidth }}>
+              <div
+                className="today-marker today-marker--axis"
+                style={{ left: todayLeft }}
+              >
+                <span>Today</span>
+              </div>
               {years.map((year) => {
                 const tickLeft = position(Date.UTC(year, 0, 1));
                 return (
@@ -359,7 +350,36 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
                 );
               })}
             </div>
+          </div>
+        </div>
 
+        <div className="study-column" aria-hidden="true">
+          {datedTrials.map((trial) => (
+            <div className="study-label" style={{ height: ROW_HEIGHT }} key={trial.id}>
+              <span>{trial.studyName}</span>
+              <small>{trial.drug}</small>
+            </div>
+          ))}
+        </div>
+
+        <div
+          className="plot-scroller"
+          tabIndex={0}
+          aria-label="Scrollable year axis"
+          onScroll={(event) => {
+            if (axisScroller.current) {
+              axisScroller.current.scrollLeft = event.currentTarget.scrollLeft;
+            }
+          }}
+        >
+          <div className="plot" style={{ width: plotWidth }}>
+            <div
+              className="today-marker today-marker--plot"
+              style={{ left: todayLeft }}
+              aria-hidden="true"
+            >
+              <span>Today</span>
+            </div>
             <div className="dated-rows">
               {datedTrials.map((trial) => {
                 const left = position(trial.startDate!);
