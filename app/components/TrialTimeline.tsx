@@ -26,6 +26,10 @@ const ROW_HEIGHT = 58;
 const TRIAL_TOOLTIP_WIDTH = 316;
 const PUBLICATION_TOOLTIP_WIDTH = 360;
 
+function asPercent(value: number) {
+  return `${value}%`;
+}
+
 function parseDate(value: string) {
   const normalized =
     value.length === 4
@@ -369,7 +373,7 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
             <div className="axis">
               <div
                 className="today-marker today-marker--axis"
-                style={{ left: `${todayLeft}%` }}
+                style={{ left: asPercent(todayLeft) }}
               >
                 <span>Today</span>
               </div>
@@ -383,7 +387,7 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
                       isMajor ? "axis-tick--major" : "axis-tick--minor"
                     } ${year === maxYear ? "axis-tick--last" : ""}`}
                     key={year}
-                    style={{ left: `${tickLeft}%` }}
+                    style={{ left: asPercent(tickLeft) }}
                   >
                     {isMajor && (
                       <span
@@ -421,7 +425,7 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
           <div className="plot" style={plotStyle}>
             <div
               className="today-marker today-marker--plot"
-              style={{ left: `${todayLeft}%` }}
+              style={{ left: asPercent(todayLeft) }}
               aria-hidden="true"
             >
               <span>Today</span>
@@ -435,8 +439,8 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
                   ? position(Date.UTC(trial.publication.year, 6, 1))
                   : null;
                 const barStyle = {
-                  "--bar-left": `${left}%`,
-                  "--bar-width": `${width}%`,
+                  "--bar-left": asPercent(left),
+                  "--bar-width": asPercent(width),
                   height: ROW_HEIGHT,
                 } as CSSProperties;
 
@@ -467,7 +471,7 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
                     {publicationLeft !== null && trial.publication && (
                       <a
                         className="publication-marker"
-                        style={{ left: publicationLeft }}
+                        style={{ left: asPercent(publicationLeft) }}
                         href={trial.publication.url}
                         target="_blank"
                         rel="noreferrer noopener"
