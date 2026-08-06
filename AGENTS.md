@@ -383,3 +383,7 @@ The current data set is intentionally local and curated.
   kicker and the study-design section number from all profiles, tightened the
   hero's top spacing, and enlarged profile navigation, hero facts, design-role
   labels, arm sample sizes, and the design summary for faster reading.
+- **2026-08-06 — Simplified profile headings:** Removed the numbered and
+  uppercase kickers above every main scientific section, enlarged the central
+  versus marker while removing its vertical dividers, and consistently added
+  standard MS-course abbreviations to profile population labels.

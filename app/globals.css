@@ -874,24 +874,8 @@ a {
 }
 
 .section-heading {
-  display: grid;
-  grid-template-columns: 46px minmax(0, 1fr);
-  gap: 18px;
-  align-items: start;
-  margin-bottom: 42px;
-}
-
-.section-heading--comparison {
-  display: block;
   margin-left: 64px;
-}
-
-.comparison-section .section-label {
-  font-size: 1rem;
-}
-
-.section-heading .section-label {
-  margin-bottom: 10px;
+  margin-bottom: 42px;
 }
 
 .section-heading h2 {
@@ -901,14 +885,6 @@ a {
   font-weight: 520;
   letter-spacing: -0.055em;
   line-height: 1;
-}
-
-.section-number {
-  margin: 4px 0 0;
-  color: var(--faint);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.64rem;
-  letter-spacing: 0.06em;
 }
 
 .design-tags {
@@ -985,21 +961,19 @@ a {
 .comparison-versus {
   display: grid;
   place-items: center;
-  border-right: 1px solid var(--line);
-  border-left: 1px solid var(--line);
 }
 
 .comparison-versus span {
   display: grid;
-  width: 38px;
-  height: 38px;
+  width: 68px;
+  height: 68px;
   place-items: center;
   background: var(--paper);
   border: 1px solid var(--line-strong);
   border-radius: 50%;
   color: var(--muted);
   font-family: var(--font-geist-mono), monospace;
-  font-size: 0.63rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
 }
 
@@ -1540,7 +1514,7 @@ a {
   }
 
   .arm-comparison {
-    grid-template-columns: 1fr 58px 1fr;
+    grid-template-columns: 1fr 76px 1fr;
   }
 
   .additional-arms article {
@@ -1690,13 +1664,8 @@ a {
   }
 
   .section-heading {
-    grid-template-columns: 34px minmax(0, 1fr);
-    gap: 10px;
-    margin-bottom: 32px;
-  }
-
-  .section-heading--comparison {
     margin-left: 44px;
+    margin-bottom: 32px;
   }
 
   .design-tags,
@@ -1852,14 +1821,7 @@ a {
 
   .section-heading {
     display: block;
-  }
-
-  .section-heading--comparison {
     margin-left: 0;
-  }
-
-  .section-number {
-    margin-bottom: 10px;
   }
 
   .design-tags,

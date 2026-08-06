@@ -130,11 +130,8 @@ export default async function TrialProfilePage({ params }: PageProps) {
         </header>
 
         <section className="comparison-section" aria-labelledby="comparison-title">
-          <div className="section-heading section-heading--comparison">
-            <div>
-              <p className="section-label">Study design</p>
-              <h2 id="comparison-title">What was compared</h2>
-            </div>
+          <div className="section-heading">
+            <h2 id="comparison-title">What was compared</h2>
           </div>
 
           <div className="design-tags" aria-label="Trial design">
@@ -190,11 +187,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
           <div className="profile-science">
             <section className="profile-section" aria-labelledby="population-title">
               <div className="section-heading">
-                <p className="section-number">02</p>
-                <div>
-                  <p className="section-label">Cohort</p>
-                  <h2 id="population-title">Study population</h2>
-                </div>
+                <h2 id="population-title">Study population</h2>
               </div>
 
               <dl className="population-grid">
@@ -225,11 +218,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
 
             <section className="profile-section" aria-labelledby="eligibility-title">
               <div className="section-heading">
-                <p className="section-number">03</p>
-                <div>
-                  <p className="section-label">Eligibility</p>
-                  <h2 id="eligibility-title">Who entered the trial</h2>
-                </div>
+                <h2 id="eligibility-title">Who entered the trial</h2>
               </div>
 
               <div className="criteria-grid">
@@ -258,11 +247,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
 
             <section className="profile-section result-section" aria-labelledby="result-title">
               <div className="section-heading">
-                <p className="section-number">04</p>
-                <div>
-                  <p className="section-label">Efficacy</p>
-                  <h2 id="result-title">Primary endpoint</h2>
-                </div>
+                <h2 id="result-title">Primary endpoint</h2>
               </div>
 
               <div className="primary-result">
@@ -299,11 +284,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
 
             <section className="profile-section" aria-labelledby="safety-title">
               <div className="section-heading">
-                <p className="section-number">05</p>
-                <div>
-                  <p className="section-label">Controlled phase</p>
-                  <h2 id="safety-title">Safety signal</h2>
-                </div>
+                <h2 id="safety-title">Safety signal</h2>
               </div>
               <ul className="safety-list">
                 {profile.safety.map((item) => (
@@ -318,11 +299,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
 
             <section className="profile-section" aria-labelledby="interpretation-title">
               <div className="section-heading">
-                <p className="section-number">06</p>
-                <div>
-                  <p className="section-label">Interpretation</p>
-                  <h2 id="interpretation-title">Why it mattered</h2>
-                </div>
+                <h2 id="interpretation-title">Why it mattered</h2>
               </div>
               <div className="interpretation-grid">
                 <div>
