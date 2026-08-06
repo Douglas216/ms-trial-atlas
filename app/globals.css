@@ -89,7 +89,7 @@ a {
 .timeline-caption {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 24px;
   padding: 22px 0 18px;
 }
@@ -112,6 +112,68 @@ a {
   background: var(--paper-raised);
   border: 2px solid var(--accent-dark);
   rotate: 45deg;
+}
+
+.timeline-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+}
+
+.timeline-scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.timeline-scroll-hint span {
+  color: var(--accent-dark);
+  font-size: 0.88rem;
+  letter-spacing: 0;
+}
+
+.timeline-sort {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.timeline-sort select {
+  min-width: 142px;
+  height: 36px;
+  padding: 0 32px 0 12px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  color: var(--ink);
+  font: inherit;
+  letter-spacing: 0.03em;
+  outline: none;
+  text-transform: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.timeline-sort select:hover {
+  border-color: var(--accent);
+}
+
+.timeline-sort select:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(47, 113, 109, 0.16);
 }
 
 .timeline-frame {
@@ -166,6 +228,7 @@ a {
 }
 
 .study-label {
+  position: relative;
   display: flex;
   min-width: 0;
   flex-direction: column;
@@ -175,7 +238,7 @@ a {
   border-bottom: 1px solid var(--line);
 }
 
-.study-label > span {
+.study-label-name {
   overflow: hidden;
   color: var(--ink);
   font-size: 0.88rem;
@@ -205,10 +268,43 @@ a {
     box-shadow 160ms ease;
 }
 
+.study-label--link {
+  padding-right: 48px;
+}
+
+.study-label-cue {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  translate: 0 -50%;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--accent-dark);
+  font-size: 0.78rem;
+  line-height: 1;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    translate 160ms ease;
+}
+
 .study-label--link:hover,
 .study-label--link:focus-visible {
   background: var(--accent-soft);
   box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.study-label--link:hover .study-label-cue,
+.study-label--link:focus-visible .study-label-cue {
+  translate: 3px -50%;
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: var(--paper-raised);
 }
 
 .study-label--link:focus-visible {
@@ -1491,6 +1587,17 @@ a {
     white-space: normal;
   }
 
+  .timeline-caption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .timeline-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .timeline-frame,
   .timeline-sticky-header {
     grid-template-columns: 176px minmax(0, 1fr);
@@ -1501,7 +1608,17 @@ a {
     padding-inline: 13px;
   }
 
-  .study-label > span {
+  .study-label--link {
+    padding-right: 38px;
+  }
+
+  .study-label-cue {
+    right: 9px;
+    width: 21px;
+    height: 21px;
+  }
+
+  .study-label-name {
     font-size: 0.78rem;
   }
 
@@ -1674,11 +1791,17 @@ a {
     grid-template-columns: 146px minmax(0, 1fr);
   }
 
+  .timeline-controls {
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
   .verification-row {
     grid-template-columns: 146px minmax(0, 1fr);
   }
 
-  .study-label > span {
+  .study-label-name {
     font-size: 0.72rem;
   }
 

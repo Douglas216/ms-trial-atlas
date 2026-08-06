@@ -20,6 +20,8 @@ type TooltipState =
     } & TooltipPosition)
   | null;
 
+type TrialSortOrder = "newest" | "oldest" | "alphabetical";
+
 const YEAR_WIDTH = 92;
 const ROW_HEIGHT = 58;
 const TRIAL_TOOLTIP_WIDTH = 316;
@@ -174,21 +176,35 @@ function PublicationTooltip({
 
 export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string }) {
   const [tooltip, setTooltip] = useState<TooltipState>(null);
+  const [sortOrder, setSortOrder] = useState<TrialSortOrder>("newest");
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const axisScroller = useRef<HTMLDivElement | null>(null);
+  const plotScroller = useRef<HTMLDivElement | null>(null);
+  const initialScrollApplied = useRef(false);
 
   const datedTrials = useMemo(
     () =>
-      trials
-        .filter(
-          (trial) => trial.startDate !== null && trial.primaryCompletionDate !== null,
-        )
-        .sort(
-          (a, b) =>
-            parseDate(a.startDate!).getTime() - parseDate(b.startDate!).getTime(),
-        ),
+      trials.filter(
+        (trial) => trial.startDate !== null && trial.primaryCompletionDate !== null,
+      ),
     [trials],
   );
+
+  const sortedDatedTrials = useMemo(() => {
+    const sorted = [...datedTrials];
+
+    if (sortOrder === "alphabetical") {
+      return sorted.sort((a, b) =>
+        a.studyName.localeCompare(b.studyName, "en", { sensitivity: "base" }),
+      );
+    }
+
+    return sorted.sort((a, b) => {
+      const difference =
+        parseDate(a.startDate!).getTime() - parseDate(b.startDate!).getTime();
+      return sortOrder === "newest" ? -difference : difference;
+    });
+  }, [datedTrials, sortOrder]);
 
   const undatedTrials = useMemo(
     () => trials.filter((trial) => !trial.startDate || !trial.primaryCompletionDate),
@@ -314,12 +330,44 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
     };
   }, []);
 
+  useEffect(() => {
+    if (!initialScrollApplied.current && plotScroller.current) {
+      const scroller = plotScroller.current;
+      scroller.scrollLeft = scroller.scrollWidth - scroller.clientWidth;
+      if (axisScroller.current) {
+        axisScroller.current.scrollLeft = scroller.scrollLeft;
+      }
+      initialScrollApplied.current = true;
+    }
+  }, [plotWidth]);
+
   return (
     <section className="timeline-figure" aria-label="Pivotal MS trial timeline">
       <div className="timeline-caption">
         <div className="publication-key">
           <span aria-hidden="true" />
           Landmark publication
+        </div>
+        <div className="timeline-controls">
+          <p className="timeline-scroll-hint">
+            <span aria-hidden="true">↔</span>
+            Scroll to explore years
+          </p>
+          <label className="timeline-sort" htmlFor="timeline-sort-order">
+            <span>Order</span>
+            <select
+              id="timeline-sort-order"
+              value={sortOrder}
+              onChange={(event) => {
+                setSortOrder(event.target.value as TrialSortOrder);
+                hideTooltip();
+              }}
+            >
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="alphabetical">A–Z</option>
+            </select>
+          </label>
         </div>
       </div>
 
@@ -354,7 +402,7 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
         </div>
 
         <div className="study-column">
-          {datedTrials.map((trial) => (
+          {sortedDatedTrials.map((trial) => (
             <Link
               className="study-label study-label--link"
               href={`/trials/${trial.slug}`}
@@ -362,16 +410,20 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
               key={trial.id}
               aria-label={`${trial.studyName}, ${trial.drug}. Open trial profile.`}
             >
-              <span>{trial.studyName}</span>
+              <span className="study-label-name">{trial.studyName}</span>
               <small>{trial.drug}</small>
+              <span className="study-label-cue" aria-hidden="true">
+                →
+              </span>
             </Link>
           ))}
         </div>
 
         <div
           className="plot-scroller"
+          ref={plotScroller}
           tabIndex={0}
-          aria-label="Scrollable year axis"
+          aria-label="Scrollable year axis. Use horizontal scrolling to explore years."
           onScroll={(event) => {
             if (axisScroller.current) {
               axisScroller.current.scrollLeft = event.currentTarget.scrollLeft;
@@ -387,7 +439,7 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
               <span>Today</span>
             </div>
             <div className="dated-rows">
-              {datedTrials.map((trial) => {
+              {sortedDatedTrials.map((trial) => {
                 const left = position(trial.startDate!);
                 const completion = position(trial.primaryCompletionDate!);
                 const width = Math.max(completion - left, 26);
@@ -469,7 +521,7 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
             {undatedTrials.map((trial) => (
               <div className="verification-row" key={trial.id}>
                 <div className="study-label">
-                  <span>{trial.studyName}</span>
+                  <span className="study-label-name">{trial.studyName}</span>
                   <small>{trial.drug}</small>
                 </div>
                 <Link

@@ -192,6 +192,11 @@ Important historical interpretations currently in the data:
 - The left column contains study name and smaller therapy text.
 - The left column remains aligned with its interval row while the year plot
   scrolls horizontally.
+- The default row order is newest trial start to oldest, with a visible control
+  for newest-first, oldest-first, and alphabetical sorting.
+- Open the year plot at its recent-year end on first load and keep an explicit
+  horizontal-scroll cue above the figure so the full historical range is
+  discoverable without compressing interval durations.
 - Preserve readable year spacing on smaller screens; do not compress the axis
   until intervals become illegible.
 - The range begins with the earliest trial, currently 1988, and extends through
@@ -204,7 +209,8 @@ Important historical interpretations currently in the data:
 - Every interval is keyboard-focusable and links to `/trials/[slug]`.
 - Every study/therapy cell in the left column is also keyboard-focusable and
   links to the same trial profile, giving each row a second clear navigation
-  target.
+  target. A persistent directional cue makes this navigation affordance visible
+  before hover or focus.
 
 ### Trial interval tooltip
 
@@ -362,3 +368,10 @@ The current data set is intentionally local and curated.
 - **2026-08-04 — Linked study labels:** Make every study/therapy cell in the
   timeline's left column a full-cell link to its trial profile, with visible
   hover and keyboard-focus treatment.
+- **2026-08-06 — Recent-first timeline orientation:** Default trial rows to
+  newest-first, retain selectable oldest-first and alphabetical orders, open
+  the plot at the recent-year end, and show a horizontal-scroll cue rather than
+  compressing the scientifically meaningful year scale or adding zoom controls.
+- **2026-08-06 — Visible profile affordance:** Add a persistent directional cue
+  to linked study/therapy cells so their profile navigation is apparent without
+  relying on hover discovery.
