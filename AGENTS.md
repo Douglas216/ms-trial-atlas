@@ -379,3 +379,7 @@ The current data set is intentionally local and curated.
   orientation with a full-width scale divided into five-year major cells and
   faint annual subdivisions. Removed the scroll cue because the complete range
   now remains visible at once.
+- **2026-08-06 — Profile legibility:** Removed the repetitive landmark-trial
+  kicker and the study-design section number from all profiles, tightened the
+  hero's top spacing, and enlarged profile navigation, hero facts, design-role
+  labels, arm sample sizes, and the design summary for faster reading.

@@ -660,7 +660,7 @@ export const trials: Trial[] = [
     slug: "optimum",
     studyName: "OPTIMUM",
     drug: "Ponesimod",
-    diseasePopulation: "Relapsing multiple sclerosis",
+    diseasePopulation: "Relapsing multiple sclerosis (RMS)",
     comparatorType: "active-comparator",
     comparatorName: "Teriflunomide",
     primaryEndpointCategory: "relapse",

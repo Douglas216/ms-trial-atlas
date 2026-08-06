@@ -761,10 +761,18 @@ a {
 .profile-position {
   color: var(--muted);
   font-family: var(--font-geist-mono), monospace;
-  font-size: 0.67rem;
   letter-spacing: 0.06em;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.back-link {
+  font-size: 1.35rem;
+  letter-spacing: 0.035em;
+}
+
+.profile-position {
+  font-size: 0.67rem;
 }
 
 .back-link:hover,
@@ -781,15 +789,11 @@ a {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;
   gap: clamp(48px, 8vw, 132px);
-  padding: clamp(70px, 9vw, 128px) 0 clamp(56px, 7vw, 96px);
+  padding: clamp(42px, 5vw, 70px) 0 clamp(56px, 7vw, 96px);
 }
 
 .profile-hero-main {
   min-width: 0;
-}
-
-.profile-kicker {
-  margin-bottom: 28px;
 }
 
 .profile-hero h1 {
@@ -847,10 +851,15 @@ a {
   text-transform: uppercase;
 }
 
+.hero-facts dt {
+  margin-bottom: 10px;
+  font-size: 0.78rem;
+}
+
 .hero-facts dd {
   margin: 0;
   color: var(--ink);
-  font-size: 0.82rem;
+  font-size: 1.05rem;
   line-height: 1.45;
 }
 
@@ -870,6 +879,15 @@ a {
   gap: 18px;
   align-items: start;
   margin-bottom: 42px;
+}
+
+.section-heading--comparison {
+  display: block;
+  margin-left: 64px;
+}
+
+.comparison-section .section-label {
+  font-size: 1rem;
 }
 
 .section-heading .section-label {
@@ -934,7 +952,7 @@ a {
   margin-bottom: 42px;
   color: var(--accent-dark);
   font-family: var(--font-geist-mono), monospace;
-  font-size: 0.62rem;
+  font-size: 1.25rem;
   font-weight: 650;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -961,7 +979,7 @@ a {
   margin-top: 17px;
   color: var(--muted);
   font-family: var(--font-geist-mono), monospace;
-  font-size: 0.64rem;
+  font-size: 1.28rem;
 }
 
 .comparison-versus {
@@ -1041,7 +1059,8 @@ a {
   gap: 9px 28px;
   flex-wrap: wrap;
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .design-summary span::before {
@@ -1645,7 +1664,7 @@ a {
   }
 
   .profile-hero {
-    padding: 58px 0 52px;
+    padding: 36px 0 52px;
   }
 
   .profile-hero h1 {
@@ -1674,6 +1693,10 @@ a {
     grid-template-columns: 34px minmax(0, 1fr);
     gap: 10px;
     margin-bottom: 32px;
+  }
+
+  .section-heading--comparison {
+    margin-left: 44px;
   }
 
   .design-tags,
@@ -1829,6 +1852,10 @@ a {
 
   .section-heading {
     display: block;
+  }
+
+  .section-heading--comparison {
+    margin-left: 0;
   }
 
   .section-number {

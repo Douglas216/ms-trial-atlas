@@ -105,7 +105,6 @@ export default async function TrialProfilePage({ params }: PageProps) {
       <article className="trial-profile">
         <header className="profile-hero">
           <div className="profile-hero-main">
-            <p className="profile-kicker">Landmark controlled trial</p>
             <h1>{trial.studyName}</h1>
             <p className="profile-drug">{trial.drug}</p>
             <p className="profile-significance">{significance}</p>
@@ -131,8 +130,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
         </header>
 
         <section className="comparison-section" aria-labelledby="comparison-title">
-          <div className="section-heading">
-            <p className="section-number">01</p>
+          <div className="section-heading section-heading--comparison">
             <div>
               <p className="section-label">Study design</p>
               <h2 id="comparison-title">What was compared</h2>

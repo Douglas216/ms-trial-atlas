@@ -1463,7 +1463,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       "OPTIMUM was the first phase III trial to compare two oral MS therapies directly, showing superior relapse and MRI control with ponesimod versus teriflunomide.",
     design: ["Randomized 1:1", "Double-blind", "Double-dummy", "Oral active comparator"],
     controlledDuration: "108 weeks",
-    enrollment: "1,133 randomized",
+    enrollment: "1,133 randomized participants",
     population: {
       age: "Mean 36.7 years; range 18–55",
       sex: "735 women (64.9%)",
