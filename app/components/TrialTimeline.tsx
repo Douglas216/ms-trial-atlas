@@ -22,7 +22,6 @@ type TooltipState =
 
 type TrialSortOrder = "newest" | "oldest" | "alphabetical";
 
-const YEAR_WIDTH = 92;
 const ROW_HEIGHT = 58;
 const TRIAL_TOOLTIP_WIDTH = 316;
 const PUBLICATION_TOOLTIP_WIDTH = 360;
@@ -178,9 +177,6 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
   const [tooltip, setTooltip] = useState<TooltipState>(null);
   const [sortOrder, setSortOrder] = useState<TrialSortOrder>("newest");
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const axisScroller = useRef<HTMLDivElement | null>(null);
-  const plotScroller = useRef<HTMLDivElement | null>(null);
-  const initialScrollApplied = useRef(false);
 
   const datedTrials = useMemo(
     () =>
@@ -211,7 +207,7 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
     [trials],
   );
 
-  const { minYear, maxYear, minTime, maxTime, years, plotWidth } = useMemo(() => {
+  const { minYear, maxYear, minTime, maxTime, years } = useMemo(() => {
     const nowTime = parseDate(now).getTime();
     const allTimes = datedTrials.flatMap((trial) => [
       parseDate(trial.startDate!).getTime(),
@@ -221,8 +217,10 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
         : parseDate(trial.primaryCompletionDate!).getTime(),
     ]);
     allTimes.push(nowTime);
-    const firstYear = new Date(Math.min(...allTimes)).getUTCFullYear();
-    const lastYear = new Date(Math.max(...allTimes)).getUTCFullYear() + 1;
+    const earliestYear = new Date(Math.min(...allTimes)).getUTCFullYear();
+    const latestYear = new Date(Math.max(...allTimes)).getUTCFullYear();
+    const firstYear = Math.floor(earliestYear / 5) * 5;
+    const lastYear = Math.ceil(latestYear / 5) * 5;
     const tickYears = Array.from(
       { length: lastYear - firstYear + 1 },
       (_, index) => firstYear + index,
@@ -233,15 +231,20 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
       minTime: Date.UTC(firstYear, 0, 1),
       maxTime: Date.UTC(lastYear, 0, 1),
       years: tickYears,
-      plotWidth: (lastYear - firstYear) * YEAR_WIDTH,
     };
   }, [datedTrials, now]);
 
   const position = (date: string | number) => {
     const time = typeof date === "number" ? date : parseDate(date).getTime();
-    return ((time - minTime) / (maxTime - minTime)) * plotWidth;
+    return ((time - minTime) / (maxTime - minTime)) * 100;
   };
   const todayLeft = position(now);
+  const yearCount = maxYear - minYear;
+  const majorIntervalCount = yearCount / 5;
+  const plotStyle = {
+    "--annual-grid-width": `${100 / yearCount}%`,
+    "--major-grid-width": `${100 / majorIntervalCount}%`,
+  } as CSSProperties;
 
   const tooltipPosition = (
     event:
@@ -330,17 +333,6 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
     };
   }, []);
 
-  useEffect(() => {
-    if (!initialScrollApplied.current && plotScroller.current) {
-      const scroller = plotScroller.current;
-      scroller.scrollLeft = scroller.scrollWidth - scroller.clientWidth;
-      if (axisScroller.current) {
-        axisScroller.current.scrollLeft = scroller.scrollLeft;
-      }
-      initialScrollApplied.current = true;
-    }
-  }, [plotWidth]);
-
   return (
     <section className="timeline-figure" aria-label="Pivotal MS trial timeline">
       <div className="timeline-caption">
@@ -349,10 +341,6 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
           Landmark publication
         </div>
         <div className="timeline-controls">
-          <p className="timeline-scroll-hint">
-            <span aria-hidden="true">↔</span>
-            Scroll to explore years
-          </p>
           <label className="timeline-sort" htmlFor="timeline-sort-order">
             <span>Order</span>
             <select
@@ -377,23 +365,33 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
             <span>Study</span>
             <span>Therapy</span>
           </div>
-          <div className="axis-scroller" ref={axisScroller} aria-hidden="true">
-            <div className="axis" style={{ width: plotWidth }}>
+          <div className="axis-scroller" aria-hidden="true">
+            <div className="axis">
               <div
                 className="today-marker today-marker--axis"
-                style={{ left: todayLeft }}
+                style={{ left: `${todayLeft}%` }}
               >
                 <span>Today</span>
               </div>
               {years.map((year) => {
                 const tickLeft = position(Date.UTC(year, 0, 1));
+                const isMajor = year % 5 === 0;
+                const majorIndex = (year - minYear) / 5;
                 return (
                   <div
-                    className="axis-tick"
+                    className={`axis-tick ${
+                      isMajor ? "axis-tick--major" : "axis-tick--minor"
+                    } ${year === maxYear ? "axis-tick--last" : ""}`}
                     key={year}
-                    style={{ left: tickLeft }}
+                    style={{ left: `${tickLeft}%` }}
                   >
-                    <span>{year}</span>
+                    {isMajor && (
+                      <span
+                        className={majorIndex % 2 === 1 ? "axis-label--secondary" : ""}
+                      >
+                        {year}
+                      </span>
+                    )}
                   </div>
                 );
               })}
@@ -419,21 +417,11 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
           ))}
         </div>
 
-        <div
-          className="plot-scroller"
-          ref={plotScroller}
-          tabIndex={0}
-          aria-label="Scrollable year axis. Use horizontal scrolling to explore years."
-          onScroll={(event) => {
-            if (axisScroller.current) {
-              axisScroller.current.scrollLeft = event.currentTarget.scrollLeft;
-            }
-          }}
-        >
-          <div className="plot" style={{ width: plotWidth }}>
+        <div className="plot-scroller">
+          <div className="plot" style={plotStyle}>
             <div
               className="today-marker today-marker--plot"
-              style={{ left: todayLeft }}
+              style={{ left: `${todayLeft}%` }}
               aria-hidden="true"
             >
               <span>Today</span>
@@ -442,13 +430,13 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
               {sortedDatedTrials.map((trial) => {
                 const left = position(trial.startDate!);
                 const completion = position(trial.primaryCompletionDate!);
-                const width = Math.max(completion - left, 26);
+                const width = completion - left;
                 const publicationLeft = trial.publication
                   ? position(Date.UTC(trial.publication.year, 6, 1))
                   : null;
                 const barStyle = {
-                  "--bar-left": `${left}px`,
-                  "--bar-width": `${width}px`,
+                  "--bar-left": `${left}%`,
+                  "--bar-width": `${width}%`,
                   height: ROW_HEIGHT,
                 } as CSSProperties;
 

@@ -190,15 +190,14 @@ Important historical interpretations currently in the data:
 - The timeline is an interval/Gantt-like scientific figure, not a point
   timeline.
 - The left column contains study name and smaller therapy text.
-- The left column remains aligned with its interval row while the year plot
-  scrolls horizontally.
+- The left column remains aligned with its interval row while the fitted year
+  plot stays fully visible.
 - The default row order is newest trial start to oldest, with a visible control
   for newest-first, oldest-first, and alphabetical sorting.
-- Open the year plot at its recent-year end on first load and keep an explicit
-  horizontal-scroll cue above the figure so the full historical range is
-  discoverable without compressing interval durations.
-- Preserve readable year spacing on smaller screens; do not compress the axis
-  until intervals become illegible.
+- Divide the year plot into five-year major cells with faint one-year minor
+  ticks. Fit the complete range to the available width without horizontal
+  scrolling; on narrow screens, reduce label frequency while preserving every
+  grid division.
 - The range begins with the earliest trial, currently 1988, and extends through
   the present.
 - A labeled vertical `Today` rule marks the current date.
@@ -314,7 +313,8 @@ The current data set is intentionally local and curated.
   components.
 - Keep OPERA I & II grouped on the homepage while retaining both identifiers.
 - Preserve hover, focus, and keyboard accessibility when changing interactions.
-- Treat mobile horizontal scrolling as a feature, not a failure.
+- Keep the fitted five-year grid visible on mobile; reduce axis-label frequency
+  before removing annual subdivisions.
 - Run `npm run build` after implementation changes.
 - Run `npm run lint` when TypeScript, JSX, or CSS-adjacent component code
   changes.
@@ -375,3 +375,7 @@ The current data set is intentionally local and curated.
 - **2026-08-06 — Visible profile affordance:** Add a persistent directional cue
   to linked study/therapy cells so their profile navigation is apparent without
   relying on hover discovery.
+- **2026-08-06 — Fitted five-year axis:** Superseded the horizontal-scroll
+  orientation with a full-width scale divided into five-year major cells and
+  faint annual subdivisions. Removed the scroll cue because the complete range
+  now remains visible at once.
