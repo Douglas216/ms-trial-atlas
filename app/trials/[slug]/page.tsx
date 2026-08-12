@@ -1,6 +1,8 @@
 import type { Metadata } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import TrialOutcomeFigure from "../../components/TrialOutcomeFigure";
+import { getTrialOutcomeFigure } from "../../data/trialOutcomeFigures";
 import { getTrialProfile } from "../../data/trialProfiles";
 import { getTrialBySlug, trials } from "../../data/trials";
 
@@ -77,8 +79,9 @@ export default async function TrialProfilePage({ params }: PageProps) {
   const { slug } = await params;
   const trial = getTrialBySlug(slug);
   const profile = getTrialProfile(slug);
+  const outcomeFigure = getTrialOutcomeFigure(slug);
 
-  if (!trial || !profile) {
+  if (!trial || !profile || !outcomeFigure) {
     notFound();
   }
 
@@ -258,14 +261,11 @@ export default async function TrialProfilePage({ params }: PageProps) {
                   </div>
                   <p>{profile.primaryOutcome.timepoint}</p>
                 </div>
-                <div className="result-groups">
-                  {profile.primaryOutcome.groups.map((group) => (
-                    <div key={`${group.label}-${group.value}`}>
-                      <span>{group.label}</span>
-                      <strong>{group.value}</strong>
-                    </div>
-                  ))}
-                </div>
+                <TrialOutcomeFigure
+                  figure={outcomeFigure}
+                  studyName={trial.studyName}
+                  sourceUrl={trial.publication?.url ?? trial.sourceUrls[0]}
+                />
                 <p className="result-effect">{profile.primaryOutcome.effect}</p>
               </div>
 

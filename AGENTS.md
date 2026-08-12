@@ -162,6 +162,15 @@ criteria are sufficient for clinical screening.
 - Sponsorship and source provenance are scientific context, not decorative
   metadata. Prefer the registry record for modern sponsor names and disclose
   when an older record depends on FDA or publication-era documentation.
+- Each profile includes a source-backed figure for its prespecified primary
+  endpoint. Use numeric, typed figure data rather than parsing prose; print
+  exact values beside every mark; preserve coprimary outcomes in separate
+  panels when units or timepoints differ; and use effect-estimate plots with a
+  visible null value when arm-level magnitudes are not the reported statistic.
+- Figure axes are endpoint-specific and begin at zero for arm-level magnitude
+  comparisons. Do not imply that scales support comparisons across trials, and
+  do not reconstruct patient-level curves from publication images without a
+  documented digitization method.
 
 ### Meaning of an interval
 
@@ -293,7 +302,11 @@ Key files:
 - `app/data/trials.ts`: canonical local trial data and types;
 - `app/data/trialProfiles.ts`: curated profile content and profile-specific
   types;
+- `app/data/trialOutcomeFigures.ts`: typed primary-endpoint figure values,
+  scales, confidence intervals, and figure-specific interpretation notes;
 - `app/components/TrialTimeline.tsx`: timeline, tooltips, markers, and date axis;
+- `app/components/TrialOutcomeFigure.tsx`: shared accessible outcome figure
+  renderer for bar, multipanel, and effect-estimate views;
 - `app/page.tsx`: homepage composition and current-date value;
 - `app/trials/[slug]/page.tsx`: reusable, statically generated trial profiles;
 - `app/globals.css`: visual system and responsive behavior;
@@ -387,3 +400,8 @@ The current data set is intentionally local and curated.
   uppercase kickers above every main scientific section, enlarged the central
   versus marker while removing its vertical dividers, and consistently added
   standard MS-course abbreviations to profile population labels.
+- **2026-08-11 — Source-backed outcome figures:** Added one accessible,
+  endpoint-specific primary-outcome figure to every trial profile. Retained
+  coprimary outcomes as separate panels, used effect-estimate plots for TOPIC
+  and MIMS, kept exact values visible without hover, and explicitly warned
+  against comparing endpoint-specific scales across trials.
