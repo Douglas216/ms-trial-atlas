@@ -405,7 +405,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       participants: "n=315",
     },
     keyInclusion: [
-      "McDonald-defined relapsing-remitting multiple sclerosis",
+      "Defined based on McDonald criteria 2001",
       "At least one relapse in the preceding 12 months",
       "MRI lesions consistent with MS and EDSS 0–5.0",
     ],
@@ -676,7 +676,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       },
     ],
     keyInclusion: [
-      "McDonald-defined relapsing-remitting multiple sclerosis",
+      "Defined based on McDonald criteria 2001",
       "At least one relapse in the preceding 12 months",
       "Baseline EDSS 0–5.5 and body weight 40–120 kg",
     ],
@@ -959,7 +959,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       },
     ],
     keyInclusion: [
-      "McDonald-defined relapsing-remitting multiple sclerosis",
+      "Defined based on McDonald criteria 2005",
       "Relapsing-remitting clinical course",
       "Baseline EDSS 0–5.0",
     ],
@@ -1029,7 +1029,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       },
     ],
     keyInclusion: [
-      "McDonald-defined relapsing-remitting multiple sclerosis",
+      "Defined based on McDonald criteria 2005",
       "Relapsing-remitting clinical course",
       "Baseline EDSS 0–5.0",
     ],
@@ -1280,7 +1280,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       regimen: "44 μg subcutaneously three times weekly",
     },
     keyInclusion: [
-      "2010 McDonald-defined relapsing multiple sclerosis",
+      "Defined based on McDonald criteria 2010",
       "At least two attacks in 2 years or one attack in the prior year",
       "Neurologic stability before baseline and EDSS 0–5.5",
     ],
@@ -1345,7 +1345,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       participants: "n=244",
     },
     keyInclusion: [
-      "McDonald-defined primary progressive MS",
+      "Defined based on McDonald criteria 2005",
       "Baseline EDSS 3.0–6.5",
       "Restricted disease duration based on baseline disability",
     ],
@@ -1416,7 +1416,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       },
     ],
     keyInclusion: [
-      "2010 McDonald-defined relapsing multiple sclerosis",
+      "Defined based on McDonald criteria 2010",
       "EDSS 0–5.0",
       "Recent relapse or a combination of relapse and gadolinium-enhancing MRI activity",
     ],
@@ -1481,7 +1481,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       participants: "n=566",
     },
     keyInclusion: [
-      "2010 McDonald-defined MS with a relapsing course from onset",
+      "Defined based on McDonald criteria 2010",
       "Recent clinical attack or gadolinium-enhancing MRI activity",
       "Ambulatory, with EDSS no higher than 5.5",
     ],
@@ -1543,7 +1543,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       regimen: "14 mg orally once daily with matching placebo",
     },
     keyInclusion: [
-      "2017 McDonald-defined relapsing multiple sclerosis",
+      "Defined based on McDonald criteria 2017",
       "Baseline EDSS 0–5.5",
       "Able to complete protocol-defined walking and upper-limb assessments",
     ],
@@ -1610,7 +1610,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       regimen: "Intravenous treatment with fenebrutinib-matching placebo",
     },
     keyInclusion: [
-      "2017 McDonald-defined primary progressive MS",
+      "Defined based on McDonald criteria 2017",
       "Documented disability progression during the preceding 12 months",
       "Baseline EDSS 3.0–6.5 with pyramidal functional-system score at least 2",
     ],
@@ -1676,7 +1676,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       regimen: "14 mg orally once daily with matching placebo",
     },
     keyInclusion: [
-      "2017 McDonald-defined relapsing multiple sclerosis",
+      "Defined based on McDonald criteria 2017",
       "Baseline EDSS no higher than 5.5",
       "Recent relapse or gadolinium-enhancing MRI activity",
     ],
@@ -1745,7 +1745,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       participants: "n=377",
     },
     keyInclusion: [
-      "2017 McDonald-defined non-relapsing secondary progressive MS",
+      "Defined based on McDonald criteria 2017",
       "Documented disability progression during the preceding 12 months",
       "No clinical relapse for at least 24 months and baseline EDSS 3.0–6.5",
     ],
@@ -1809,7 +1809,7 @@ export const trialProfiles: Record<string, TrialProfile> = {
       participants: "n=252",
     },
     keyInclusion: [
-      "2017 McDonald-defined primary progressive MS",
+      "Defined based on McDonald criteria 2017",
       "Baseline EDSS 2.0–6.5",
       "Positive cerebrospinal-fluid oligoclonal bands or elevated IgG index",
       "No access to ocrelizumab, or prior intolerance or perceived inadequate efficacy with ocrelizumab",

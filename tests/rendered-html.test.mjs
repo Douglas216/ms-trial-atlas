@@ -71,3 +71,26 @@ test("groups paired BTK programs and withholds unverified publication markers", 
     assert.match(html, /No peer-reviewed primary paper/);
   }
 });
+
+test("uses trial-era McDonald criteria phrasing in affected inclusion lists", async () => {
+  const expectedVersions = {
+    affirm: "2001",
+    clarity: "2001",
+    confirm: "2005",
+    define: "2005",
+    opera: "2010",
+    oratorio: "2005",
+    sunbeam: "2010",
+    optimum: "2010",
+    fenhance: "2017",
+    fentrepid: "2017",
+    gemini: "2017",
+    hercules: "2017",
+    perseus: "2017",
+  };
+
+  for (const [slug, version] of Object.entries(expectedVersions)) {
+    const html = await (await render(`/trials/${slug}`)).text();
+    assert.match(html, new RegExp(`Defined based on McDonald criteria ${version}`), slug);
+  }
+});

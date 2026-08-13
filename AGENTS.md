@@ -1,6 +1,6 @@
 # MS Trial Atlas: Durable Project Context
 
-Last updated: 2026-08-12
+Last updated: 2026-08-13
 
 This file is the source of truth for product intent, scientific-data rules, and
 decisions that should survive across Codex tasks. Read it before making changes.
@@ -171,6 +171,9 @@ criteria are sufficient for clinical screening.
 - Limit secondary outcomes to a small set that materially aids interpretation.
 - Label inclusion and exclusion lists as `Key` criteria and disclose that they
   are not the complete protocol.
+- In key inclusion criteria, phrase McDonald diagnostic-framework references
+  as `Defined based on McDonald criteria YYYY`, using the edition actually
+  applied by the trial rather than the current edition.
 - Keep controlled-trial safety separate from extension and post-marketing
   knowledge. A limitation may explain that the pivotal trial could not
   characterize rare or delayed risks, but do not silently merge later events
@@ -432,3 +435,6 @@ The current data set is intentionally local and curated.
   comparator block on every profile. Study population and key eligibility now
   follow the results so readers reach the pivotal finding first while retaining
   cohort context immediately below.
+- **2026-08-13 — McDonald criteria phrasing:** Standardized McDonald references
+  in key inclusion lists as `Defined based on McDonald criteria YYYY`, while
+  preserving the diagnostic edition used by each trial.
