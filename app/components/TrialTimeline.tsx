@@ -130,7 +130,7 @@ function TrialTooltip({
         </div>
         <div>
           <dt>Publication year</dt>
-          <dd>{trial.publicationYear ?? "Being verified"}</dd>
+          <dd>{trial.publicationYear ?? trial.publicationStatus ?? "Being verified"}</dd>
         </div>
       </dl>
     </div>

@@ -1521,6 +1521,336 @@ export const trialProfiles: Record<string, TrialProfile> = {
     provenance:
       "The primary publication and ClinicalTrials.gov record support the design, demographics, eligibility, outcomes, safety, and sponsor.",
   },
+  fenhance: {
+    phase: "Phase III",
+    significance:
+      "The parallel FENhance trials reported that investigational fenebrutinib reduced relapses and MRI lesion activity more than teriflunomide in relapsing multiple sclerosis.",
+    design: ["Two parallel trials", "Randomized 1:1", "Double-blind", "Double-dummy"],
+    controlledDuration: "At least 96 weeks",
+    enrollment: "1,497 randomized across two trials",
+    population: {
+      age: "18–55 years eligible",
+      sex: "66.5% women across both studies",
+      edss: "EDSS 0–5.5",
+      disease: "2017 McDonald-defined relapsing multiple sclerosis",
+    },
+    intervention: {
+      label: "Fenebrutinib",
+      regimen: "200 mg orally twice daily with matching placebo",
+    },
+    comparator: {
+      label: "Teriflunomide",
+      regimen: "14 mg orally once daily with matching placebo",
+    },
+    keyInclusion: [
+      "2017 McDonald-defined relapsing multiple sclerosis",
+      "Baseline EDSS 0–5.5",
+      "Able to complete protocol-defined walking and upper-limb assessments",
+    ],
+    keyExclusion: [
+      "Primary progressive MS or non-active secondary progressive MS",
+      "Active infection or clinically important immune, hepatic, or systemic disease",
+      "Disease duration over 10 years with baseline EDSS below 2.0",
+    ],
+    primaryOutcome: {
+      name: "Annualized relapse rate",
+      timepoint: "Minimum 96 weeks in each trial",
+      groups: [
+        { label: "FENhance 1: fenebrutinib", value: "0.061" },
+        { label: "FENhance 1: teriflunomide", value: "0.125" },
+        { label: "FENhance 2: fenebrutinib", value: "0.054" },
+        { label: "FENhance 2: teriflunomide", value: "0.130" },
+      ],
+      effect:
+        "Fenebrutinib reduced adjusted relapse rates by 51.1% in FENhance 1 (rate ratio 0.49; 95% CI 0.33–0.73; P<0.001) and 58.5% in FENhance 2 (0.42; 95% CI 0.28–0.61; P<0.00001).",
+    },
+    secondaryOutcomes: [
+      {
+        name: "MRI lesion activity",
+        finding:
+          "New T1 gadolinium-enhancing lesions and new or enlarging T2 lesions were significantly reduced in both trials.",
+      },
+      {
+        name: "12-week composite disability progression",
+        finding:
+          "Numerical reductions favored fenebrutinib but the confidence intervals included no difference in both trials.",
+      },
+    ],
+    safety: [
+      "Liver-enzyme elevations above three times the upper limit of normal were similar between treatment groups in both trials.",
+      "One asymptomatic Hy’s Law case occurred in each treatment group in FENhance 1 and resolved after treatment discontinuation.",
+      "Across the two reporting periods, seven deaths occurred with fenebrutinib and one with teriflunomide; causes and timing varied, and an additional fenebrutinib-arm death occurred later.",
+    ],
+    whyItMattered:
+      "FENhance 1 and 2 provided replicated Phase III evidence that an oral, brain-penetrant, non-covalent BTK inhibitor can outperform an active oral comparator on relapse and MRI outcomes.",
+    limitation:
+      "Fenebrutinib remains investigational in MS. The current efficacy evidence comes from a conference presentation and sponsor report rather than a peer-reviewed primary paper, and the fatal-event imbalance requires careful regulatory and clinical interpretation.",
+    sponsor: "F. Hoffmann-La Roche",
+    provenance:
+      "Separate ClinicalTrials.gov records supply the dates, enrollment, eligibility, and protocols. Primary efficacy and controlled-phase safety values are from the 2026 AAN presentation and Roche result report; no peer-reviewed primary Phase III paper was verified.",
+  },
+  fentrepid: {
+    phase: "Phase III",
+    significance:
+      "FENtrepid reported that investigational oral fenebrutinib was non-inferior to ocrelizumab for composite disability progression in primary progressive multiple sclerosis.",
+    design: ["Randomized 1:1", "Double-blind", "Double-dummy", "Active-controlled"],
+    controlledDuration: "At least 120 weeks",
+    enrollment: "985 randomized",
+    population: {
+      age: "18–65 years eligible",
+      edss: "EDSS 3.0–6.5",
+      disease: "2017 McDonald-defined PPMS with recent disability progression",
+    },
+    intervention: {
+      label: "Fenebrutinib",
+      regimen: "200 mg orally twice daily with ocrelizumab-matching placebo",
+    },
+    comparator: {
+      label: "Ocrelizumab",
+      regimen: "Intravenous treatment with fenebrutinib-matching placebo",
+    },
+    keyInclusion: [
+      "2017 McDonald-defined primary progressive MS",
+      "Documented disability progression during the preceding 12 months",
+      "Baseline EDSS 3.0–6.5 with pyramidal functional-system score at least 2",
+    ],
+    keyExclusion: [
+      "Active infection, immunodeficiency, or specified prior potent immunosuppression",
+      "Acute or unstable chronic liver disease",
+      "Clinically important comorbidity that could confound efficacy or safety assessment",
+    ],
+    primaryOutcome: {
+      name: "Time to 12-week composite confirmed disability progression",
+      timepoint: "Minimum 120 weeks",
+      groups: [
+        { label: "Fenebrutinib vs ocrelizumab", value: "HR 0.88" },
+        { label: "Ocrelizumab", value: "Reference" },
+      ],
+      effect:
+        "Fenebrutinib met the prespecified non-inferiority endpoint (HR 0.88; 95% CI 0.75–1.03); this was not a superiority finding.",
+    },
+    secondaryOutcomes: [
+      {
+        name: "Upper-limb worsening",
+        finding:
+          "Risk of confirmed worsening on the nine-hole peg test was 26% lower with fenebrutinib (HR 0.74; 95% CI 0.56–0.98).",
+      },
+      {
+        name: "Post-hoc two-component composite",
+        finding:
+          "A post-hoc EDSS-plus-nine-hole-peg composite favored fenebrutinib (HR 0.78; 95% CI 0.64–0.95).",
+      },
+    ],
+    safety: [
+      "Transient, reversible liver-enzyme elevations were more frequent with fenebrutinib than ocrelizumab: 13.3% versus 2.9%.",
+      "Serious adverse events occurred in 19.1% and 18.9%, respectively.",
+      "Fatal events occurred in 1.4% with fenebrutinib and 0.2% with ocrelizumab; investigators assessed them as unrelated and reported no pattern.",
+    ],
+    whyItMattered:
+      "FENtrepid was the first Phase III trial to compare a BTK inhibitor directly with the established active treatment ocrelizumab in PPMS and met its non-inferiority objective.",
+    limitation:
+      "Non-inferiority does not establish superiority, and the supportive two-component analysis was post hoc. Fenebrutinib remains investigational, and no peer-reviewed primary Phase III paper was verified.",
+    sponsor: "F. Hoffmann-La Roche",
+    provenance:
+      "ClinicalTrials.gov supplies the protocol, dates, enrollment, and eligibility. Results and controlled-phase safety are from Roche’s ACTRIMS 2026 report and presentation; no peer-reviewed primary paper was verified.",
+  },
+  gemini: {
+    phase: "Phase III",
+    significance:
+      "The parallel GEMINI trials found that tolebrutinib did not reduce annualized relapse rates more than teriflunomide in relapsing multiple sclerosis.",
+    design: ["Two parallel trials", "Randomized 1:1", "Triple-masked", "Double-dummy"],
+    controlledDuration: "Event-driven; median follow-up 139 weeks",
+    enrollment: "1,873 randomized across two trials",
+    population: {
+      age: "Mean 36.5 years; eligible 18–55",
+      sex: "Approximately 67% women",
+      edss: "EDSS 0–5.5 eligible",
+      disease: "2017 McDonald-defined relapsing multiple sclerosis with recent activity",
+    },
+    intervention: {
+      label: "Tolebrutinib",
+      regimen: "60 mg orally once daily with matching placebo",
+    },
+    comparator: {
+      label: "Teriflunomide",
+      regimen: "14 mg orally once daily with matching placebo",
+    },
+    keyInclusion: [
+      "2017 McDonald-defined relapsing multiple sclerosis",
+      "Baseline EDSS no higher than 5.5",
+      "Recent relapse or gadolinium-enhancing MRI activity",
+    ],
+    keyExclusion: [
+      "Primary progressive MS or non-relapsing secondary progressive MS",
+      "Active infection or clinically important hepatic abnormality",
+      "Bleeding disorder, platelet dysfunction, or prohibited anticoagulant therapy",
+    ],
+    primaryOutcome: {
+      name: "Annualized relapse rate",
+      timepoint: "Event-driven follow-up in each trial",
+      groups: [
+        { label: "GEMINI 1: tolebrutinib", value: "0.130" },
+        { label: "GEMINI 1: teriflunomide", value: "0.122" },
+        { label: "GEMINI 2: tolebrutinib", value: "0.108" },
+        { label: "GEMINI 2: teriflunomide", value: "0.109" },
+      ],
+      effect:
+        "Neither trial demonstrated superiority: rate ratio 1.06 (P=0.67) in GEMINI 1 and 1.00 (P=0.98) in GEMINI 2.",
+    },
+    secondaryOutcomes: [
+      {
+        name: "6-month confirmed disability worsening",
+        finding:
+          "The pooled analysis favored tolebrutinib (8.3% versus 11.3%; HR 0.71; 95% CI 0.53–0.95), but formal testing was precluded by the failed hierarchical primary endpoint.",
+      },
+      {
+        name: "MRI lesion activity",
+        finding:
+          "Focal inflammatory MRI lesion measures did not show a consistent advantage for tolebrutinib.",
+      },
+    ],
+    safety: [
+      "Overall adverse-event incidence was similar between treatment groups.",
+      "Minor bleeding events were more frequent with tolebrutinib, including petechiae and heavy menstrual bleeding.",
+      "Liver-enzyme monitoring remained important because rare marked elevations occurred with tolebrutinib.",
+    ],
+    whyItMattered:
+      "The negative relapse results, alongside a hypothesis-generating pooled disability signal, helped separate effects on focal inflammatory activity from possible effects on disability biology.",
+    limitation:
+      "Because both primary endpoints were negative, the pooled disability result was not formally tested under the prespecified hierarchy and cannot overturn the primary conclusion.",
+    sponsor: "Sanofi",
+    provenance:
+      "The peer-reviewed primary publication reports GEMINI 1 and 2 together. The two ClinicalTrials.gov result records preserve trial-specific dates, enrollment, arm values, and identifiers.",
+  },
+  hercules: {
+    phase: "Phase III",
+    significance:
+      "HERCULES showed that tolebrutinib delayed confirmed disability progression versus placebo in non-relapsing secondary progressive multiple sclerosis.",
+    design: ["Randomized 2:1", "Double-blind", "Placebo-controlled", "Event-driven"],
+    controlledDuration: "Median follow-up 133 weeks",
+    enrollment: "1,131 randomized",
+    population: {
+      age: "18–60 years eligible",
+      edss: "EDSS 3.0–6.5",
+      disease: "Non-relapsing SPMS with recent progression and no relapse for at least 24 months",
+    },
+    intervention: {
+      label: "Tolebrutinib",
+      regimen: "60 mg orally once daily",
+      participants: "n=754",
+    },
+    comparator: {
+      label: "Placebo",
+      regimen: "Matching oral placebo once daily",
+      participants: "n=377",
+    },
+    keyInclusion: [
+      "2017 McDonald-defined non-relapsing secondary progressive MS",
+      "Documented disability progression during the preceding 12 months",
+      "No clinical relapse for at least 24 months and baseline EDSS 3.0–6.5",
+    ],
+    keyExclusion: [
+      "Relapse during the preceding 24 months",
+      "Active infection or clinically important hepatic abnormality",
+      "Medical condition or concomitant treatment that could confound disability assessment",
+    ],
+    primaryOutcome: {
+      name: "6-month confirmed disability progression",
+      timepoint: "Event-driven follow-up; median 133 weeks",
+      groups: [
+        { label: "Tolebrutinib", value: "22.6%" },
+        { label: "Placebo", value: "30.7%" },
+      ],
+      effect: "HR 0.69 (95% CI 0.55–0.88; P=0.003), a 31% relative risk reduction.",
+    },
+    secondaryOutcomes: [
+      {
+        name: "New or enlarging T2 lesions",
+        finding: "The adjusted annualized lesion count was 38% lower with tolebrutinib.",
+      },
+      {
+        name: "Confirmed disability improvement",
+        finding: "A greater proportion achieved protocol-defined confirmed disability improvement.",
+      },
+    ],
+    safety: [
+      "Serious adverse events occurred in 15.0% with tolebrutinib and 10.4% with placebo.",
+      "ALT elevations above three times the upper limit of normal occurred in 4.0% and 1.6%, respectively.",
+      "Before intensified liver monitoring, one tolebrutinib-treated participant required liver transplantation and died from postoperative complications.",
+    ],
+    whyItMattered:
+      "HERCULES supplied the pivotal evidence for EU authorization of Cenrifki for adults with SPMS without relapses in the previous two years.",
+    limitation:
+      "The result applies to a selected non-relapsing SPMS population and does not establish efficacy in relapsing MS or PPMS. Drug-induced liver injury requires structured monitoring.",
+    sponsor: "Sanofi",
+    provenance:
+      "The peer-reviewed primary publication supplies outcomes and controlled-phase safety; ClinicalTrials.gov supplies protocol details and exact dates. The EMA record supports the narrowly defined 2026 EU authorization.",
+  },
+  perseus: {
+    phase: "Phase III",
+    significance:
+      "PERSEUS found that tolebrutinib did not delay composite confirmed disability progression versus placebo in primary progressive multiple sclerosis.",
+    design: ["Randomized 2:1", "Double-blind", "Placebo-controlled", "Event-driven"],
+    controlledDuration: "Up to approximately 60 months",
+    enrollment: "767 randomized",
+    population: {
+      age: "18–55 years eligible",
+      edss: "EDSS 2.0–6.5",
+      disease: "2017 McDonald-defined PPMS with supportive cerebrospinal-fluid findings",
+    },
+    intervention: {
+      label: "Tolebrutinib",
+      regimen: "60 mg orally once daily",
+      participants: "n=515",
+    },
+    comparator: {
+      label: "Placebo",
+      regimen: "Matching oral placebo once daily",
+      participants: "n=252",
+    },
+    keyInclusion: [
+      "2017 McDonald-defined primary progressive MS",
+      "Baseline EDSS 2.0–6.5",
+      "Positive cerebrospinal-fluid oligoclonal bands or elevated IgG index",
+      "No access to ocrelizumab, or prior intolerance or perceived inadequate efficacy with ocrelizumab",
+    ],
+    keyExclusion: [
+      "Active infection or clinically important hepatic abnormality",
+      "Recent MS treatment within protocol-specified washout periods",
+      "Medical condition or treatment that could confound disability assessment",
+    ],
+    primaryOutcome: {
+      name: "Time to 6-month composite confirmed disability progression",
+      timepoint: "Up to approximately 60 months",
+      groups: [
+        { label: "Tolebrutinib vs placebo", value: "HR 1.01" },
+        { label: "Placebo", value: "Reference" },
+      ],
+      effect: "The primary endpoint was not met: HR 1.01 (95% CI 0.81–1.26; P=0.94).",
+    },
+    secondaryOutcomes: [
+      {
+        name: "Composite components",
+        finding:
+          "The distribution of qualifying EDSS, walking, and upper-limb progression events did not yield an overall treatment effect.",
+      },
+      {
+        name: "Regulatory consequence",
+        finding: "Sanofi stated that it would not pursue a PPMS indication based on PERSEUS.",
+      },
+    ],
+    safety: [
+      "The sponsor reported a preliminary safety profile consistent with previous tolebrutinib studies.",
+      "Drug-induced liver injury remained an identified risk requiring early and regular liver monitoring.",
+    ],
+    whyItMattered:
+      "PERSEUS is an important negative pivotal study: it showed that the HERCULES disability result in non-relapsing SPMS did not extend to this PPMS population.",
+    limitation:
+      "The efficacy and safety values currently come from a 2026 scientific-congress presentation and sponsor reporting; no peer-reviewed primary paper was verified.",
+    sponsor: "Sanofi",
+    provenance:
+      "ClinicalTrials.gov supplies the design, dates, enrollment, and eligibility. The primary estimate is from Sanofi’s ACTRIMS 2026 presentation; no peer-reviewed primary paper was verified.",
+  },
 };
 
 export function getTrialProfile(slug: string) {

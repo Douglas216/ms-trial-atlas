@@ -11,6 +11,7 @@ type TrialOutcomeFigureProps = {
   figure: TrialOutcomeFigureData;
   studyName: string;
   sourceUrl: string;
+  sourceLabel: string;
 };
 
 function axisNumber(value: number) {
@@ -126,6 +127,7 @@ export default function TrialOutcomeFigure({
   figure,
   studyName,
   sourceUrl,
+  sourceLabel,
 }: TrialOutcomeFigureProps) {
   return (
     <figure
@@ -161,7 +163,7 @@ export default function TrialOutcomeFigure({
           {figure.note && <> {figure.note}</>}
         </p>
         <a href={sourceUrl} target="_blank" rel="noreferrer">
-          Source: landmark publication <span aria-hidden="true">↗</span>
+          Source: {sourceLabel} <span aria-hidden="true">↗</span>
         </a>
       </figcaption>
     </figure>

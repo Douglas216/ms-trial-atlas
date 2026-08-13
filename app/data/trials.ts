@@ -20,6 +20,17 @@ export type Publication = {
   url: string;
 };
 
+export type UnderlyingTrial = {
+  studyName: string;
+  nctId: string;
+  protocolId: string;
+  startDate: string;
+  primaryCompletionDate: string;
+  studyCompletionDate: string;
+  studyCompletionStatus: "actual" | "estimated";
+  sourceUrl: string;
+};
+
 export type Trial = {
   id: string;
   slug: string;
@@ -33,9 +44,12 @@ export type Trial = {
   primaryCompletionDate: string | null;
   publicationYear: number | null;
   publication?: Publication;
+  publicationStatus?: string;
   nctIds: string[];
   protocolIds: string[];
+  underlyingTrials?: UnderlyingTrial[];
   sourceUrls: string[];
+  resultSourceUrl?: string;
   dataStatus: "verified" | "needs-verification";
   dateNote?: string;
 };
@@ -682,6 +696,224 @@ export const trials: Trial[] = [
       "https://clinicaltrials.gov/study/NCT02425644",
       "https://pubmed.ncbi.nlm.nih.gov/33779698/",
     ],
+    dataStatus: "verified",
+  },
+  {
+    id: "fenhance",
+    slug: "fenhance",
+    studyName: "FENhance 1 & 2",
+    drug: "Fenebrutinib",
+    diseasePopulation: "Relapsing multiple sclerosis (RMS)",
+    comparatorType: "active-comparator",
+    comparatorName: "Teriflunomide",
+    primaryEndpointCategory: "relapse",
+    startDate: "2021-03-17",
+    primaryCompletionDate: "2026-01-27",
+    publicationYear: null,
+    publicationStatus: "No peer-reviewed primary paper yet",
+    nctIds: ["NCT04586010", "NCT04586023"],
+    protocolIds: ["GN41851", "GN42272"],
+    underlyingTrials: [
+      {
+        studyName: "FENhance 1",
+        nctId: "NCT04586010",
+        protocolId: "GN41851",
+        startDate: "2021-03-17",
+        primaryCompletionDate: "2026-01-27",
+        studyCompletionDate: "2027-11-30",
+        studyCompletionStatus: "estimated",
+        sourceUrl: "https://clinicaltrials.gov/study/NCT04586010",
+      },
+      {
+        studyName: "FENhance 2",
+        nctId: "NCT04586023",
+        protocolId: "GN42272",
+        startDate: "2021-03-24",
+        primaryCompletionDate: "2025-09-05",
+        studyCompletionDate: "2027-07-09",
+        studyCompletionStatus: "estimated",
+        sourceUrl: "https://clinicaltrials.gov/study/NCT04586023",
+      },
+    ],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT04586010",
+      "https://clinicaltrials.gov/study/NCT04586023",
+      "https://www.roche.com/media/releases/med-cor-2026-04-21c",
+      "https://medically.gene.com/content/dam/pdmahub/restricted/neurology/aan-2026/AAN-2026-presentation-oh-efficacy-and-safety-of-fenebrutinib-vs-teriflunomide-in-relapsing-multiple-sclerosis.pdf",
+    ],
+    resultSourceUrl:
+      "https://medically.gene.com/content/dam/pdmahub/restricted/neurology/aan-2026/AAN-2026-presentation-oh-efficacy-and-safety-of-fenebrutinib-vs-teriflunomide-in-relapsing-multiple-sclerosis.pdf",
+    dataStatus: "verified",
+    dateNote:
+      "The grouped interval begins with FENhance 1 and ends at its later primary completion. Both open-label extensions remain active and are excluded from the solid bar.",
+  },
+  {
+    id: "fentrepid",
+    slug: "fentrepid",
+    studyName: "FENtrepid",
+    drug: "Fenebrutinib",
+    diseasePopulation: "Primary progressive multiple sclerosis (PPMS)",
+    comparatorType: "active-comparator",
+    comparatorName: "Ocrelizumab",
+    primaryEndpointCategory: "disability-progression",
+    startDate: "2020-10-26",
+    primaryCompletionDate: "2025-09-17",
+    publicationYear: null,
+    publicationStatus: "No peer-reviewed primary paper yet",
+    nctIds: ["NCT04544449"],
+    protocolIds: ["GN41791"],
+    underlyingTrials: [
+      {
+        studyName: "FENtrepid",
+        nctId: "NCT04544449",
+        protocolId: "GN41791",
+        startDate: "2020-10-26",
+        primaryCompletionDate: "2025-09-17",
+        studyCompletionDate: "2027-07-21",
+        studyCompletionStatus: "estimated",
+        sourceUrl: "https://clinicaltrials.gov/study/NCT04544449",
+      },
+    ],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT04544449",
+      "https://www.roche.com/investors/updates/inv-update-2026-02-07",
+      "https://assets.roche.com/f/176343/x/4ea2b884ce/260209_actrims_final.pdf",
+    ],
+    resultSourceUrl: "https://www.roche.com/investors/updates/inv-update-2026-02-07",
+    dataStatus: "verified",
+    dateNote:
+      "The primary double-blind efficacy period is complete; the open-label extension remains active and is excluded from the solid bar.",
+  },
+  {
+    id: "gemini",
+    slug: "gemini",
+    studyName: "GEMINI 1 & 2",
+    drug: "Tolebrutinib",
+    diseasePopulation: "Relapsing multiple sclerosis (RMS)",
+    comparatorType: "active-comparator",
+    comparatorName: "Teriflunomide",
+    primaryEndpointCategory: "relapse",
+    startDate: "2020-06-11",
+    primaryCompletionDate: "2024-07-16",
+    publicationYear: 2025,
+    publication: {
+      title: "Tolebrutinib versus Teriflunomide in Relapsing Multiple Sclerosis",
+      firstAuthor: "Oh J",
+      journal: "New England Journal of Medicine",
+      year: 2025,
+      doi: "10.1056/NEJMoa2415985",
+      url: "https://doi.org/10.1056/NEJMoa2415985",
+    },
+    nctIds: ["NCT04410978", "NCT04410991"],
+    protocolIds: ["EFC16033", "EFC16034"],
+    underlyingTrials: [
+      {
+        studyName: "GEMINI 1",
+        nctId: "NCT04410978",
+        protocolId: "EFC16033",
+        startDate: "2020-06-30",
+        primaryCompletionDate: "2024-07-15",
+        studyCompletionDate: "2024-07-15",
+        studyCompletionStatus: "actual",
+        sourceUrl: "https://clinicaltrials.gov/study/NCT04410978",
+      },
+      {
+        studyName: "GEMINI 2",
+        nctId: "NCT04410991",
+        protocolId: "EFC16034",
+        startDate: "2020-06-11",
+        primaryCompletionDate: "2024-07-16",
+        studyCompletionDate: "2024-07-16",
+        studyCompletionStatus: "actual",
+        sourceUrl: "https://clinicaltrials.gov/study/NCT04410991",
+      },
+    ],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT04410978",
+      "https://clinicaltrials.gov/study/NCT04410991",
+      "https://pubmed.ncbi.nlm.nih.gov/40202623/",
+    ],
+    resultSourceUrl: "https://doi.org/10.1056/NEJMoa2415985",
+    dataStatus: "verified",
+    dateNote:
+      "The grouped interval begins with GEMINI 2 and ends at its later primary completion; both controlled trials are complete.",
+  },
+  {
+    id: "hercules",
+    slug: "hercules",
+    studyName: "HERCULES",
+    drug: "Tolebrutinib",
+    diseasePopulation: "Non-relapsing secondary progressive multiple sclerosis (nrSPMS)",
+    comparatorType: "placebo",
+    comparatorName: "Placebo",
+    primaryEndpointCategory: "disability-progression",
+    startDate: "2020-09-24",
+    primaryCompletionDate: "2024-08-29",
+    publicationYear: 2025,
+    publication: {
+      title: "Tolebrutinib in Nonrelapsing Secondary Progressive Multiple Sclerosis",
+      firstAuthor: "Fox RJ",
+      journal: "New England Journal of Medicine",
+      year: 2025,
+      doi: "10.1056/NEJMoa2415988",
+      url: "https://doi.org/10.1056/NEJMoa2415988",
+    },
+    nctIds: ["NCT04411641"],
+    protocolIds: ["EFC16645"],
+    underlyingTrials: [
+      {
+        studyName: "HERCULES",
+        nctId: "NCT04411641",
+        protocolId: "EFC16645",
+        startDate: "2020-09-24",
+        primaryCompletionDate: "2024-08-29",
+        studyCompletionDate: "2024-08-29",
+        studyCompletionStatus: "actual",
+        sourceUrl: "https://clinicaltrials.gov/study/NCT04411641",
+      },
+    ],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT04411641",
+      "https://pubmed.ncbi.nlm.nih.gov/40202696/",
+      "https://www.ema.europa.eu/en/medicines/human/EPAR/cenrifki",
+    ],
+    resultSourceUrl: "https://doi.org/10.1056/NEJMoa2415988",
+    dataStatus: "verified",
+  },
+  {
+    id: "perseus",
+    slug: "perseus",
+    studyName: "PERSEUS",
+    drug: "Tolebrutinib",
+    diseasePopulation: "Primary progressive multiple sclerosis (PPMS)",
+    comparatorType: "placebo",
+    comparatorName: "Placebo",
+    primaryEndpointCategory: "disability-progression",
+    startDate: "2020-08-13",
+    primaryCompletionDate: "2025-11-14",
+    publicationYear: null,
+    publicationStatus: "No peer-reviewed primary paper yet",
+    nctIds: ["NCT04458051"],
+    protocolIds: ["EFC16035"],
+    underlyingTrials: [
+      {
+        studyName: "PERSEUS",
+        nctId: "NCT04458051",
+        protocolId: "EFC16035",
+        startDate: "2020-08-13",
+        primaryCompletionDate: "2025-11-14",
+        studyCompletionDate: "2025-11-14",
+        studyCompletionStatus: "actual",
+        sourceUrl: "https://clinicaltrials.gov/study/NCT04458051",
+      },
+    ],
+    sourceUrls: [
+      "https://clinicaltrials.gov/study/NCT04458051",
+      "https://www.sanofi.com/en/media-room/press-releases/2025/2025-12-15-06-05-00-3205094",
+      "https://congress.sanofimedical.com/s3fs-public/2026-01/Efficacy%20and%20Safety%20of%20Tolebrutinib%20Versus%20Placebo%20in%20Primary%20Progressive%20Multiple%20Sclerosis%20Results%20from%20the%20Phase%203%20PERSEUS%20Trial.pdf",
+    ],
+    resultSourceUrl:
+      "https://congress.sanofimedical.com/s3fs-public/2026-01/Efficacy%20and%20Safety%20of%20Tolebrutinib%20Versus%20Placebo%20in%20Primary%20Progressive%20Multiple%20Sclerosis%20Results%20from%20the%20Phase%203%20PERSEUS%20Trial.pdf",
     dataStatus: "verified",
   },
 ];

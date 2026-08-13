@@ -467,6 +467,134 @@ export const trialOutcomeFigures: Record<string, TrialOutcomeFigure> = {
       },
     ],
   },
+  fenhance: {
+    panels: [
+      {
+        kind: "bars",
+        title: "FENhance 1 — annualized relapse rate",
+        timepoint: "Minimum 96 weeks",
+        axisMax: 0.15,
+        axisLabel: "Adjusted relapses per participant-year",
+        lowerIsBetter: true,
+        values: [
+          { label: "Fenebrutinib", value: 0.061, displayValue: "0.061" },
+          { label: "Teriflunomide", value: 0.125, displayValue: "0.125", reference: true },
+        ],
+      },
+      {
+        kind: "bars",
+        title: "FENhance 2 — annualized relapse rate",
+        timepoint: "Minimum 96 weeks",
+        axisMax: 0.15,
+        axisLabel: "Adjusted relapses per participant-year",
+        lowerIsBetter: true,
+        values: [
+          { label: "Fenebrutinib", value: 0.054, displayValue: "0.054" },
+          { label: "Teriflunomide", value: 0.13, displayValue: "0.130", reference: true },
+        ],
+      },
+    ],
+    note:
+      "Both trials met the primary endpoint. Values are from the AAN 2026 scientific presentation; a peer-reviewed primary paper has not yet been verified.",
+  },
+  fentrepid: {
+    panels: [
+      {
+        kind: "effect",
+        title: "12-week composite confirmed disability progression",
+        timepoint: "Minimum 120 weeks",
+        axisMin: 0.5,
+        axisMax: 1.3,
+        nullValue: 1,
+        axisLabel: "Hazard ratio (95% CI)",
+        lowerLabel: "Favors fenebrutinib",
+        upperLabel: "Favors ocrelizumab",
+        values: [
+          {
+            label: "Fenebrutinib vs ocrelizumab",
+            value: 0.88,
+            displayValue: "0.88 (0.75–1.03)",
+            ciLow: 0.75,
+            ciHigh: 1.03,
+          },
+        ],
+      },
+    ],
+    note:
+      "The prespecified non-inferiority criterion was met even though the confidence interval crosses the superiority null at 1.0; superiority was not established.",
+  },
+  gemini: {
+    panels: [
+      {
+        kind: "bars",
+        title: "GEMINI 1 — annualized relapse rate",
+        timepoint: "Event-driven follow-up",
+        axisMax: 0.16,
+        axisLabel: "Adjusted relapses per participant-year",
+        lowerIsBetter: true,
+        values: [
+          { label: "Tolebrutinib", value: 0.13, displayValue: "0.130" },
+          { label: "Teriflunomide", value: 0.122, displayValue: "0.122", reference: true },
+        ],
+      },
+      {
+        kind: "bars",
+        title: "GEMINI 2 — annualized relapse rate",
+        timepoint: "Event-driven follow-up",
+        axisMax: 0.16,
+        axisLabel: "Adjusted relapses per participant-year",
+        lowerIsBetter: true,
+        values: [
+          { label: "Tolebrutinib", value: 0.108, displayValue: "0.108" },
+          { label: "Teriflunomide", value: 0.109, displayValue: "0.109", reference: true },
+        ],
+      },
+    ],
+    note:
+      "Neither trial met the primary superiority endpoint; the near-equal bar lengths are the scientific result, not a display error.",
+  },
+  hercules: {
+    panels: [
+      {
+        kind: "bars",
+        title: "6-month confirmed disability progression",
+        timepoint: "Median follow-up 133 weeks",
+        axisMax: 35,
+        axisLabel: "Participants with progression (%)",
+        lowerIsBetter: true,
+        values: [
+          { label: "Tolebrutinib", value: 22.6, displayValue: "22.6%" },
+          { label: "Placebo", value: 30.7, displayValue: "30.7%", reference: true },
+        ],
+      },
+    ],
+  },
+  perseus: {
+    panels: [
+      {
+        kind: "effect",
+        title: "6-month composite confirmed disability progression",
+        timepoint: "Up to approximately 60 months",
+        axisMin: 0.7,
+        axisMax: 1.3,
+        nullValue: 1,
+        axisLabel: "Hazard ratio (95% CI)",
+        lowerLabel: "Favors tolebrutinib",
+        upperLabel: "Favors placebo",
+        values: [
+          {
+            label: "Tolebrutinib vs placebo",
+            value: 1.01,
+            displayValue: "1.01 (0.81–1.26)",
+            ciLow: 0.81,
+            ciHigh: 1.26,
+          },
+        ],
+      },
+    ],
+    note:
+      "The primary endpoint was not met (P=0.94). Values are from the ACTRIMS 2026 scientific presentation; no peer-reviewed primary paper has been verified.",
+  },
 };
 
 function validateOutcomeFigures() {

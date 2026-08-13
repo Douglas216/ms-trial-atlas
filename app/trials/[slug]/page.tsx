@@ -49,6 +49,13 @@ function sourceLabel(url: string) {
   if (url.includes("sciencedirect.com")) return "Publisher record";
   if (url.includes("onlinelibrary.wiley.com")) return "Publisher record";
   if (url.includes("pmc.ncbi.nlm.nih.gov")) return "Peer-reviewed source";
+  if (url.includes("ema.europa.eu")) return "EMA regulatory record";
+  if (url.includes("medically.gene.com") || url.includes("congress.sanofimedical.com")) {
+    return "Scientific congress presentation";
+  }
+  if (url.includes("roche.com") || url.includes("sanofi.com")) {
+    return "Sponsor result report";
+  }
   return "Scientific source";
 }
 
@@ -264,7 +271,8 @@ export default async function TrialProfilePage({ params }: PageProps) {
                 <TrialOutcomeFigure
                   figure={outcomeFigure}
                   studyName={trial.studyName}
-                  sourceUrl={trial.publication?.url ?? trial.sourceUrls[0]}
+                  sourceUrl={trial.resultSourceUrl ?? trial.publication?.url ?? trial.sourceUrls[0]}
+                  sourceLabel={trial.publication ? "landmark publication" : "primary result report"}
                 />
                 <p className="result-effect">{profile.primaryOutcome.effect}</p>
               </div>
@@ -389,6 +397,17 @@ export default async function TrialProfilePage({ params }: PageProps) {
                   Open publication <span aria-hidden="true">↗</span>
                 </a>
                 <small>DOI {trial.publication.doi}</small>
+              </div>
+            )}
+
+            {!trial.publication && trial.publicationStatus && (
+              <div className="record-block publication-record publication-record--pending">
+                <p className="section-label">Primary result publication</p>
+                <p>{trial.publicationStatus}</p>
+                <small>
+                  Conference or sponsor reporting is listed below but does not create a landmark
+                  publication marker.
+                </small>
               </div>
             )}
 

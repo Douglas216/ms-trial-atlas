@@ -1,6 +1,6 @@
 # MS Trial Atlas: Durable Project Context
 
-Last updated: 2026-07-30
+Last updated: 2026-08-12
 
 This file is the source of truth for product intent, scientific-data rules, and
 decisions that should survive across Codex tasks. Read it before making changes.
@@ -67,10 +67,13 @@ credible to an expert while remaining understandable to a trainee.
 
 ## Current scope
 
-The initial atlas contains exactly 22 curated landmark entries, derived from
-Table 1, "Overview of pivotal clinical trials for approved disease-modifying MS
-therapies," in the review "Thinking outside the box: non-canonical targets in
-multiple sclerosis."
+The atlas contains exactly 27 curated landmark entries. The original 22 were
+derived from Table 1, "Overview of pivotal clinical trials for approved
+disease-modifying MS therapies," in the review "Thinking outside the box:
+non-canonical targets in multiple sclerosis." Five recent BTK-inhibitor
+programs were later added by direct request; negative pivotal trials remain in
+scope because the atlas is an educational history rather than a list of
+successful products.
 
 1. IFNβ-1b subcutaneous pivotal trial
 2. Copolymer 1 pivotal trial
@@ -94,6 +97,17 @@ multiple sclerosis."
 20. ORATORIO
 21. SUNBEAM
 22. OPTIMUM
+23. FENhance 1 & 2
+24. FENtrepid
+25. GEMINI 1 & 2
+26. HERCULES
+27. PERSEUS
+
+FENhance 1 & 2 and GEMINI 1 & 2 each appear as one timeline row while retaining
+their two underlying registry records, identifiers, and dates in structured
+data. Fenebrutinib remains investigational in MS. Tolebrutinib is authorized in
+the EU as Cenrifki only for adults with SPMS without relapses in the previous
+two years; do not generalize that authorization to RMS or PPMS.
 
 The current product consists of:
 
@@ -125,7 +139,9 @@ Preferred source order:
 2. the primary peer-reviewed trial publication;
 3. FDA or EMA reviews and approval documents;
 4. official protocols and supplementary appendices;
-5. high-quality systematic reviews only when primary records are insufficient.
+5. sponsor scientific-congress materials or official result reports when a
+   peer-reviewed primary paper is not yet available;
+6. high-quality systematic reviews only when primary records are insufficient.
 
 Store source URLs with each trial. When sources disagree, document the conflict
 and do not silently choose a convenient value.
@@ -405,3 +421,9 @@ The current data set is intentionally local and curated.
   coprimary outcomes as separate panels, used effect-estimate plots for TOPIC
   and MIMS, kept exact values visible without hover, and explicitly warned
   against comparing endpoint-specific scales across trials.
+- **2026-08-12 — Recent BTK-inhibitor programs:** Expanded the atlas from 22 to
+  27 displayed entries with FENhance 1 & 2, FENtrepid, GEMINI 1 & 2, HERCULES,
+  and PERSEUS. Kept paired programs grouped visually while preserving all seven
+  underlying registry records. Included negative pivotal studies, excluded
+  open-label extensions from solid intervals, and withheld publication
+  diamonds when only conference or sponsor result reporting was available.

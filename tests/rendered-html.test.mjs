@@ -38,7 +38,8 @@ test("every generated trial profile includes an accessible outcome figure", asyn
     "ifnb-1b-pivotal", "copolymer-1", "mscrg", "prisms", "mims", "affirm",
     "freedoms", "transforms", "freedoms-ii", "clarity", "temso", "topic",
     "tower", "confirm", "define", "camms223", "care-ms-i", "expand", "opera",
-    "oratorio", "sunbeam", "optimum",
+    "oratorio", "sunbeam", "optimum", "fenhance", "fentrepid", "gemini",
+    "hercules", "perseus",
   ];
 
   for (const slug of slugs) {
@@ -47,6 +48,22 @@ test("every generated trial profile includes an accessible outcome figure", asyn
     const html = await response.text();
     assert.match(html, /data-outcome-figure=/, slug);
     assert.match(html, /Exact values are printed beside each mark/, slug);
-    assert.match(html, /Source: landmark publication/, slug);
+    assert.match(html, /Source:[\s\S]{0,80}(landmark publication|primary result report)/, slug);
+  }
+});
+
+test("groups paired BTK programs and withholds unverified publication markers", async () => {
+  const homepage = await (await render("/")).text();
+  assert.equal((homepage.match(/FENhance 1 &amp; 2/g) ?? []).length > 0, true);
+  assert.equal((homepage.match(/GEMINI 1 &amp; 2/g) ?? []).length > 0, true);
+
+  for (const slug of ["fenhance", "fentrepid", "gemini", "hercules", "perseus"]) {
+    assert.match(homepage, new RegExp(`/trials/${slug}`));
+  }
+
+  for (const slug of ["fenhance", "fentrepid", "perseus"]) {
+    const html = await (await render(`/trials/${slug}`)).text();
+    assert.doesNotMatch(html, /Landmark publication/);
+    assert.match(html, /No peer-reviewed primary paper/);
   }
 });
