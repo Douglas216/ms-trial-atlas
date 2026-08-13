@@ -438,3 +438,6 @@ The current data set is intentionally local and curated.
 - **2026-08-13 — McDonald criteria phrasing:** Standardized McDonald references
   in key inclusion lists as `Defined based on McDonald criteria YYYY`, while
   preserving the diagnostic edition used by each trial.
+- **2026-08-13 — Tertiary heading legibility:** Enlarged the shared uppercase
+  subsection-heading treatment used for inclusion/exclusion columns, selected
+  secondary outcomes, and important limitations across all trial profiles.
