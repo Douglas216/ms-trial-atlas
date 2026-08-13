@@ -195,6 +195,41 @@ export default async function TrialProfilePage({ params }: PageProps) {
 
         <div className="profile-body">
           <div className="profile-science">
+            <section className="profile-section result-section" aria-labelledby="result-title">
+              <div className="section-heading">
+                <h2 id="result-title">Primary endpoint</h2>
+              </div>
+
+              <div className="primary-result">
+                <div className="primary-result-heading">
+                  <div>
+                    <span>Prespecified outcome</span>
+                    <h3>{profile.primaryOutcome.name}</h3>
+                  </div>
+                  <p>{profile.primaryOutcome.timepoint}</p>
+                </div>
+                <TrialOutcomeFigure
+                  figure={outcomeFigure}
+                  studyName={trial.studyName}
+                  sourceUrl={trial.resultSourceUrl ?? trial.publication?.url ?? trial.sourceUrls[0]}
+                  sourceLabel={trial.publication ? "landmark publication" : "primary result report"}
+                />
+                <p className="result-effect">{profile.primaryOutcome.effect}</p>
+              </div>
+
+              {profile.secondaryOutcomes.length > 0 && (
+                <div className="secondary-results">
+                  <h3>Selected secondary outcomes</h3>
+                  {profile.secondaryOutcomes.map((outcome) => (
+                    <div key={outcome.name}>
+                      <span>{outcome.name}</span>
+                      <p>{outcome.finding}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+
             <section className="profile-section" aria-labelledby="population-title">
               <div className="section-heading">
                 <h2 id="population-title">Study population</h2>
@@ -253,41 +288,6 @@ export default async function TrialProfilePage({ params }: PageProps) {
                 Curated criteria for interpreting the study population—not a complete protocol
                 eligibility list.
               </p>
-            </section>
-
-            <section className="profile-section result-section" aria-labelledby="result-title">
-              <div className="section-heading">
-                <h2 id="result-title">Primary endpoint</h2>
-              </div>
-
-              <div className="primary-result">
-                <div className="primary-result-heading">
-                  <div>
-                    <span>Prespecified outcome</span>
-                    <h3>{profile.primaryOutcome.name}</h3>
-                  </div>
-                  <p>{profile.primaryOutcome.timepoint}</p>
-                </div>
-                <TrialOutcomeFigure
-                  figure={outcomeFigure}
-                  studyName={trial.studyName}
-                  sourceUrl={trial.resultSourceUrl ?? trial.publication?.url ?? trial.sourceUrls[0]}
-                  sourceLabel={trial.publication ? "landmark publication" : "primary result report"}
-                />
-                <p className="result-effect">{profile.primaryOutcome.effect}</p>
-              </div>
-
-              {profile.secondaryOutcomes.length > 0 && (
-                <div className="secondary-results">
-                  <h3>Selected secondary outcomes</h3>
-                  {profile.secondaryOutcomes.map((outcome) => (
-                    <div key={outcome.name}>
-                      <span>{outcome.name}</span>
-                      <p>{outcome.finding}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
             </section>
 
             <section className="profile-section" aria-labelledby="safety-title">

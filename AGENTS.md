@@ -294,9 +294,9 @@ than a registry dump. Preserve this order:
 
 1. trial identity and a neutral one-sentence significance statement;
 2. a visually dominant intervention-versus-comparator block;
-3. study population and key eligibility;
-4. primary endpoint with arm-level results, followed by selected secondary
+3. primary endpoint with arm-level results, followed by selected secondary
    outcomes;
+4. study population and key eligibility;
 5. controlled-phase safety;
 6. why the trial mattered and one important limitation.
 
@@ -427,3 +427,8 @@ The current data set is intentionally local and curated.
   underlying registry records. Included negative pivotal studies, excluded
   open-label extensions from solid intervals, and withheld publication
   diamonds when only conference or sponsor result reporting was available.
+- **2026-08-12 — Results-first trial profiles:** Moved the primary endpoint and
+  selected secondary outcomes directly below the intervention-versus-
+  comparator block on every profile. Study population and key eligibility now
+  follow the results so readers reach the pivotal finding first while retaining
+  cohort context immediately below.
