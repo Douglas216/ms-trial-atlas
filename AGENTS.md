@@ -450,3 +450,7 @@ The current data set is intentionally local and curated.
   panel padding, record spacing, and navigation height throughout the shared
   profile template so readers can see more scientific content per screen while
   preserving the results-first hierarchy and comfortable line lengths.
+- **2026-09-03 — Continuous profile transitions:** Removed the horizontal rules
+  and most stacked outer padding between the hero and comparison block, and
+  between the comparison block and primary endpoint. These transitions should
+  read as one continuous scientific narrative rather than separate exhibits.
