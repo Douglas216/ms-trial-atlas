@@ -744,13 +744,13 @@ a {
 
 .profile-page {
   min-height: 100vh;
-  padding: 0 clamp(22px, 4.8vw, 76px) 72px;
+  padding: 0 clamp(22px, 4.8vw, 76px) 56px;
 }
 
 .profile-topbar {
   display: flex;
   width: min(1380px, 100%);
-  height: 74px;
+  height: 68px;
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
@@ -788,8 +788,8 @@ a {
 .profile-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;
-  gap: clamp(48px, 8vw, 132px);
-  padding: clamp(42px, 5vw, 70px) 0 clamp(56px, 7vw, 96px);
+  gap: clamp(40px, 6vw, 96px);
+  padding: clamp(32px, 4vw, 52px) 0 clamp(42px, 5vw, 68px);
 }
 
 .profile-hero-main {
@@ -808,7 +808,7 @@ a {
 }
 
 .profile-drug {
-  margin: 30px 0 0;
+  margin: 22px 0 0;
   color: var(--accent-dark);
   font-size: clamp(1.2rem, 2.2vw, 1.65rem);
   font-weight: 520;
@@ -817,10 +817,10 @@ a {
 
 .profile-significance {
   max-width: 760px;
-  margin: 36px 0 0;
+  margin: 26px 0 0;
   color: #40535c;
   font-size: clamp(1.05rem, 1.5vw, 1.28rem);
-  line-height: 1.7;
+  line-height: 1.62;
 }
 
 .profile-significance strong {
@@ -835,7 +835,7 @@ a {
 }
 
 .hero-facts div {
-  padding: 18px 0;
+  padding: 14px 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -865,7 +865,7 @@ a {
 
 .comparison-section,
 .profile-section {
-  padding: clamp(72px, 8vw, 118px) 0;
+  padding: clamp(48px, 5.5vw, 76px) 0;
   border-bottom: 1px solid var(--line-strong);
 }
 
@@ -875,7 +875,7 @@ a {
 
 .section-heading {
   margin-left: 64px;
-  margin-bottom: 42px;
+  margin-bottom: 28px;
 }
 
 .section-heading h2 {
@@ -889,7 +889,7 @@ a {
 
 .design-tags {
   display: flex;
-  margin: 0 0 20px 64px;
+  margin: 0 0 16px 64px;
   gap: 8px;
   flex-wrap: wrap;
 }
@@ -914,8 +914,8 @@ a {
 }
 
 .trial-arm {
-  min-height: 244px;
-  padding: clamp(28px, 4vw, 48px);
+  min-height: 200px;
+  padding: clamp(28px, 3vw, 40px);
 }
 
 .trial-arm--treatment {
@@ -925,7 +925,7 @@ a {
 
 .arm-role {
   display: block;
-  margin-bottom: 42px;
+  margin-bottom: 26px;
   color: var(--accent-dark);
   font-family: var(--font-geist-mono), monospace;
   font-size: 1.25rem;
@@ -1029,7 +1029,7 @@ a {
 
 .design-summary {
   display: flex;
-  margin: 38px 0 0 64px;
+  margin: 25px 0 0 64px;
   gap: 9px 28px;
   flex-wrap: wrap;
   color: var(--muted);
@@ -1051,7 +1051,7 @@ a {
 .profile-body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;
-  gap: clamp(54px, 8vw, 132px);
+  gap: clamp(42px, 6vw, 96px);
   align-items: start;
 }
 
@@ -1066,22 +1066,22 @@ a {
 .trial-record {
   position: sticky;
   top: 20px;
-  padding-top: clamp(72px, 8vw, 118px);
+  padding-top: clamp(48px, 5.5vw, 76px);
 }
 
 .record-block {
-  padding: 0 0 30px;
-  margin-bottom: 30px;
+  padding: 0 0 22px;
+  margin-bottom: 22px;
   border-bottom: 1px solid var(--line-strong);
 }
 
 .record-block > .section-label {
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 }
 
 .record-block dl {
   display: grid;
-  gap: 19px;
+  gap: 15px;
   margin: 0;
 }
 
@@ -1143,7 +1143,7 @@ a {
 }
 
 .publication-record > p {
-  margin: 13px 0 19px;
+  margin: 9px 0 14px;
   color: var(--muted);
   font-size: 0.71rem;
   line-height: 1.55;
@@ -1157,7 +1157,7 @@ a {
 
 .publication-record small {
   display: block;
-  margin-top: 13px;
+  margin-top: 9px;
   color: var(--faint);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.58rem;
@@ -1167,7 +1167,7 @@ a {
 
 .source-list {
   display: grid;
-  gap: 12px;
+  gap: 9px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -1190,10 +1190,10 @@ a {
 }
 
 .provenance-note > p:not(.section-label) {
-  margin: 0 0 12px;
+  margin: 0 0 9px;
   color: var(--muted);
   font-size: 0.68rem;
-  line-height: 1.62;
+  line-height: 1.5;
 }
 
 .population-grid {
@@ -1205,8 +1205,8 @@ a {
 }
 
 .population-grid > div {
-  min-height: 125px;
-  padding: 24px;
+  min-height: 105px;
+  padding: 20px;
   border-right: 1px solid var(--line-strong);
   border-bottom: 1px solid var(--line-strong);
 }
@@ -1233,18 +1233,18 @@ a {
 }
 
 .criteria-grid > div {
-  padding: 30px 30px 30px 0;
+  padding: 24px 24px 24px 0;
 }
 
 .criteria-grid > div + div {
-  padding-left: 30px;
+  padding-left: 24px;
   border-left: 1px solid var(--line);
 }
 
 .criteria-grid h3,
 .secondary-results > h3,
 .interpretation-grid h3 {
-  margin: 0 0 22px;
+  margin: 0 0 16px;
   color: var(--accent-dark);
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
@@ -1256,7 +1256,7 @@ a {
 .criteria-grid ul,
 .safety-list {
   display: grid;
-  gap: 17px;
+  gap: 13px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -1268,7 +1268,7 @@ a {
   padding-left: 18px;
   color: var(--ink);
   font-size: 0.84rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .criteria-grid li::before,
@@ -1284,7 +1284,7 @@ a {
 
 .criteria-note,
 .safety-boundary {
-  margin: 19px 0 0 64px;
+  margin: 14px 0 0 64px;
   color: var(--faint);
   font-size: 0.68rem;
   line-height: 1.5;
@@ -1301,8 +1301,8 @@ a {
   display: flex;
   align-items: start;
   justify-content: space-between;
-  gap: 28px;
-  padding: 30px 34px;
+  gap: 24px;
+  padding: 24px 28px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -1346,7 +1346,7 @@ a {
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  padding: 24px 34px 22px;
+  padding: 19px 28px 18px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -1402,7 +1402,7 @@ a {
 
 .outcome-panel {
   min-width: 0;
-  padding: 27px 34px 25px;
+  padding: 22px 28px 20px;
 }
 
 .outcome-panel-heading {
@@ -1410,8 +1410,8 @@ a {
   align-items: flex-start;
   justify-content: space-between;
   gap: 18px;
-  min-height: 59px;
-  margin-bottom: 26px;
+  min-height: 48px;
+  margin-bottom: 18px;
 }
 
 .outcome-panel-heading h4 {
@@ -1443,7 +1443,7 @@ a {
 .outcome-bar-plot,
 .effect-plot {
   display: grid;
-  gap: 18px;
+  gap: 14px;
 }
 
 .outcome-bar-row,
@@ -1573,7 +1573,7 @@ a {
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
-  padding: 19px 34px 21px;
+  padding: 15px 28px 17px;
   color: var(--faint);
   border-top: 1px solid var(--line);
   font-size: 0.6rem;
@@ -1600,7 +1600,7 @@ a {
 
 .result-effect {
   margin: 0;
-  padding: 24px 34px 26px;
+  padding: 18px 28px 20px;
   color: var(--navy);
   font-size: 0.89rem;
   font-weight: 520;
@@ -1608,14 +1608,14 @@ a {
 }
 
 .secondary-results {
-  margin: 42px 0 0 64px;
+  margin: 30px 0 0 64px;
 }
 
 .secondary-results > div {
   display: grid;
   grid-template-columns: minmax(145px, 0.35fr) 1fr;
   gap: 28px;
-  padding: 19px 0;
+  padding: 14px 0;
   border-top: 1px solid var(--line);
 }
 
@@ -1639,7 +1639,7 @@ a {
 
 .safety-list {
   margin-left: 64px;
-  padding: 28px 0;
+  padding: 22px 0;
   border-top: 1px solid var(--line-strong);
   border-bottom: 1px solid var(--line-strong);
 }
@@ -1653,11 +1653,11 @@ a {
 }
 
 .interpretation-grid > div {
-  padding: 32px 32px 34px 0;
+  padding: 24px 24px 26px 0;
 }
 
 .interpretation-grid > div + div {
-  padding-left: 32px;
+  padding-left: 24px;
   border-left: 1px solid var(--line);
 }
 
@@ -1665,7 +1665,7 @@ a {
   margin: 0;
   color: var(--ink);
   font-size: 0.9rem;
-  line-height: 1.72;
+  line-height: 1.62;
 }
 
 .interpretation-grid > div:first-child p {
@@ -1673,24 +1673,24 @@ a {
   font-size: clamp(1.15rem, 1.8vw, 1.5rem);
   font-weight: 470;
   letter-spacing: -0.025em;
-  line-height: 1.55;
+  line-height: 1.45;
 }
 
 .profile-pagination {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
-  margin-top: 72px;
+  margin-top: 52px;
   background: var(--line-strong);
   border: 1px solid var(--line-strong);
 }
 
 .profile-pagination > a {
   display: flex;
-  min-height: 142px;
+  min-height: 112px;
   flex-direction: column;
   justify-content: space-between;
-  padding: 26px 30px;
+  padding: 22px 26px;
   background: var(--paper-raised);
   text-decoration: none;
   transition: background-color 160ms ease;
@@ -1758,7 +1758,7 @@ a {
 @media (max-width: 860px) {
   .profile-hero {
     grid-template-columns: 1fr;
-    gap: 52px;
+    gap: 36px;
   }
 
   .hero-facts {
@@ -1787,7 +1787,7 @@ a {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 36px;
-    padding-top: 72px;
+    padding-top: 48px;
     border-bottom: 1px solid var(--line-strong);
   }
 }
@@ -1870,7 +1870,7 @@ a {
   }
 
   .profile-hero {
-    padding: 36px 0 52px;
+    padding: 30px 0 40px;
   }
 
   .profile-hero h1 {
@@ -1878,7 +1878,7 @@ a {
   }
 
   .profile-significance {
-    margin-top: 28px;
+    margin-top: 22px;
   }
 
   .hero-facts {
@@ -1892,12 +1892,12 @@ a {
 
   .comparison-section,
   .profile-section {
-    padding: 64px 0;
+    padding: 48px 0;
   }
 
   .section-heading {
     margin-left: 44px;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
 
   .design-tags,
@@ -1921,15 +1921,15 @@ a {
 
   .trial-arm {
     min-height: 0;
-    padding: 30px;
+    padding: 24px;
   }
 
   .arm-role {
-    margin-bottom: 26px;
+    margin-bottom: 20px;
   }
 
   .comparison-versus {
-    min-height: 62px;
+    min-height: 52px;
     border-top: 1px solid var(--line);
     border-right: 0;
     border-bottom: 1px solid var(--line);
@@ -1955,7 +1955,7 @@ a {
   .criteria-grid > div + div,
   .interpretation-grid > div,
   .interpretation-grid > div + div {
-    padding: 28px 0;
+    padding: 22px 0;
     border-left: 0;
   }
 
@@ -1968,7 +1968,7 @@ a {
     align-items: flex-start;
     flex-direction: column;
     gap: 12px;
-    padding: 26px;
+    padding: 22px;
   }
 
   .primary-result-heading > p {

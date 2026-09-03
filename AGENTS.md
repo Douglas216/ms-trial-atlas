@@ -1,6 +1,6 @@
 # MS Trial Atlas: Durable Project Context
 
-Last updated: 2026-08-13
+Last updated: 2026-09-03
 
 This file is the source of truth for product intent, scientific-data rules, and
 decisions that should survive across Codex tasks. Read it before making changes.
@@ -446,3 +446,7 @@ The current data set is intentionally local and curated.
   arm-level bar figures. Exact printed arm values remain the primary numeric
   reference; effect-estimate figures retain their scientifically necessary
   null reference.
+- **2026-09-03 — Compact trial profiles:** Reduced oversized vertical gaps,
+  panel padding, record spacing, and navigation height throughout the shared
+  profile template so readers can see more scientific content per screen while
+  preserving the results-first hierarchy and comfortable line lengths.
