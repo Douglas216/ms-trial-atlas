@@ -49,6 +49,8 @@ test("every generated trial profile includes an accessible outcome figure", asyn
     assert.match(html, /data-outcome-figure=/, slug);
     assert.match(html, /Exact values are printed beside each mark/, slug);
     assert.match(html, /Source:[\s\S]{0,80}(landmark publication|primary result report)/, slug);
+    assert.doesNotMatch(html, /class="outcome-axis"/, slug);
+    assert.doesNotMatch(html, /(Lower|Higher) values favor the intervention/, slug);
     assert.ok(
       html.indexOf("Primary endpoint") < html.indexOf("Study population"),
       `${slug}: primary endpoint should precede study population`,

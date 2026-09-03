@@ -53,13 +53,6 @@ function BarPanel({ panel }: { panel: BarOutcomePanel }) {
         })}
       </div>
 
-      <div className="outcome-axis" aria-hidden="true">
-        <span>0</span>
-        <span>{axisNumber(panel.axisMax)}</span>
-      </div>
-      <p className="outcome-direction">
-        {panel.lowerIsBetter ? "Lower values favor the intervention" : "Higher values favor the intervention"}
-      </p>
     </section>
   );
 }

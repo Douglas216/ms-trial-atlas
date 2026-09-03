@@ -441,3 +441,8 @@ The current data set is intentionally local and curated.
 - **2026-08-13 — Tertiary heading legibility:** Enlarged the shared uppercase
   subsection-heading treatment used for inclusion/exclusion columns, selected
   secondary outcomes, and important limitations across all trial profiles.
+- **2026-09-03 — Cleaner bar figures:** Removed internal interval gridlines,
+  endpoint tick labels, and the redundant higher/lower-is-better sentence from
+  arm-level bar figures. Exact printed arm values remain the primary numeric
+  reference; effect-estimate figures retain their scientifically necessary
+  null reference.
