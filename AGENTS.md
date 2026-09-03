@@ -454,3 +454,8 @@ The current data set is intentionally local and curated.
   and most stacked outer padding between the hero and comparison block, and
   between the comparison block and primary endpoint. These transitions should
   read as one continuous scientific narrative rather than separate exhibits.
+- **2026-09-03 — Compact lower profile narrative:** Reduced population-cell
+  height, enlarged eligibility-column headings, and removed the rules and
+  stacked outer padding before safety and interpretation. The lower half of a
+  profile should read continuously without decorative whitespace delaying the
+  next scientific section.

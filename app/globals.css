@@ -1209,8 +1209,8 @@ a {
 }
 
 .population-grid > div {
-  min-height: 105px;
-  padding: 20px;
+  min-height: 82px;
+  padding: 14px 20px;
   border-right: 1px solid var(--line-strong);
   border-bottom: 1px solid var(--line-strong);
 }
@@ -1237,7 +1237,7 @@ a {
 }
 
 .criteria-grid > div {
-  padding: 24px 24px 24px 0;
+  padding: 18px 24px 18px 0;
 }
 
 .criteria-grid > div + div {
@@ -1251,7 +1251,7 @@ a {
   margin: 0 0 16px;
   color: var(--accent-dark);
   font-family: var(--font-geist-mono), monospace;
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 650;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1288,7 +1288,7 @@ a {
 
 .criteria-note,
 .safety-boundary {
-  margin: 14px 0 0 64px;
+  margin: 10px 0 0 64px;
   color: var(--faint);
   font-size: 0.68rem;
   line-height: 1.5;
@@ -1643,9 +1643,30 @@ a {
 
 .safety-list {
   margin-left: 64px;
-  padding: 22px 0;
+  padding: 16px 0;
   border-top: 1px solid var(--line-strong);
   border-bottom: 1px solid var(--line-strong);
+}
+
+.population-section {
+  padding-bottom: 20px;
+  border-bottom: 0;
+}
+
+.eligibility-section {
+  padding-top: 20px;
+  padding-bottom: 14px;
+  border-bottom: 0;
+}
+
+.safety-section {
+  padding-top: 14px;
+  padding-bottom: 12px;
+  border-bottom: 0;
+}
+
+.interpretation-section {
+  padding-top: 14px;
 }
 
 .interpretation-grid {
@@ -1907,6 +1928,24 @@ a {
     padding-top: 24px;
   }
 
+  .population-section {
+    padding-bottom: 18px;
+  }
+
+  .eligibility-section {
+    padding-top: 18px;
+    padding-bottom: 12px;
+  }
+
+  .safety-section {
+    padding-top: 12px;
+    padding-bottom: 10px;
+  }
+
+  .interpretation-section {
+    padding-top: 12px;
+  }
+
   .section-heading {
     margin-left: 44px;
     margin-bottom: 24px;
@@ -2095,8 +2134,8 @@ a {
   }
 
   .population-grid > div {
-    min-height: 105px;
-    padding: 20px;
+    min-height: 78px;
+    padding: 14px 18px;
   }
 
   .result-effect {

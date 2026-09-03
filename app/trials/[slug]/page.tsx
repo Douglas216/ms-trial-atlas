@@ -230,7 +230,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
               )}
             </section>
 
-            <section className="profile-section" aria-labelledby="population-title">
+            <section className="profile-section population-section" aria-labelledby="population-title">
               <div className="section-heading">
                 <h2 id="population-title">Study population</h2>
               </div>
@@ -261,7 +261,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
               </dl>
             </section>
 
-            <section className="profile-section" aria-labelledby="eligibility-title">
+            <section className="profile-section eligibility-section" aria-labelledby="eligibility-title">
               <div className="section-heading">
                 <h2 id="eligibility-title">Who entered the trial</h2>
               </div>
@@ -290,7 +290,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
               </p>
             </section>
 
-            <section className="profile-section" aria-labelledby="safety-title">
+            <section className="profile-section safety-section" aria-labelledby="safety-title">
               <div className="section-heading">
                 <h2 id="safety-title">Safety signal</h2>
               </div>
@@ -305,7 +305,10 @@ export default async function TrialProfilePage({ params }: PageProps) {
               </p>
             </section>
 
-            <section className="profile-section" aria-labelledby="interpretation-title">
+            <section
+              className="profile-section interpretation-section"
+              aria-labelledby="interpretation-title"
+            >
               <div className="section-heading">
                 <h2 id="interpretation-title">Why it mattered</h2>
               </div>
