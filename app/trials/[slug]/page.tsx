@@ -284,10 +284,6 @@ export default async function TrialProfilePage({ params }: PageProps) {
                   </ul>
                 </div>
               </div>
-              <p className="criteria-note">
-                Curated criteria for interpreting the study population—not a complete protocol
-                eligibility list.
-              </p>
             </section>
 
             <section className="profile-section safety-section" aria-labelledby="safety-title">
@@ -299,10 +295,6 @@ export default async function TrialProfilePage({ params }: PageProps) {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-              <p className="safety-boundary">
-                This summary describes the pivotal controlled trial. It does not merge in
-                extension or post-marketing safety evidence.
-              </p>
             </section>
 
             <section

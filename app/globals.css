@@ -1286,14 +1286,6 @@ a {
   content: "";
 }
 
-.criteria-note,
-.safety-boundary {
-  margin: 10px 0 0 64px;
-  color: var(--faint);
-  font-size: 0.68rem;
-  line-height: 1.5;
-}
-
 .primary-result {
   margin-left: 64px;
   overflow: hidden;
@@ -1957,11 +1949,9 @@ a {
   .design-summary,
   .population-grid,
   .criteria-grid,
-  .criteria-note,
   .primary-result,
   .secondary-results,
   .safety-list,
-  .safety-boundary,
   .interpretation-grid {
     margin-left: 44px;
   }
@@ -2124,11 +2114,9 @@ a {
   .design-summary,
   .population-grid,
   .criteria-grid,
-  .criteria-note,
   .primary-result,
   .secondary-results,
   .safety-list,
-  .safety-boundary,
   .interpretation-grid {
     margin-left: 0;
   }

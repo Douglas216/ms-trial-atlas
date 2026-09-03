@@ -169,8 +169,8 @@ criteria are sufficient for clinical screening.
 - Identify the exact endpoint definition and prespecified timepoint. For
   coprimary endpoints, preserve both outcomes, including a negative result.
 - Limit secondary outcomes to a small set that materially aids interpretation.
-- Label inclusion and exclusion lists as `Key` criteria and disclose that they
-  are not the complete protocol.
+- Label inclusion and exclusion lists as `Key` criteria so their curated scope
+  is clear without a repeated completeness disclaimer on every profile.
 - In key inclusion criteria, phrase McDonald diagnostic-framework references
   as `Defined based on McDonald criteria YYYY`, using the edition actually
   applied by the trial rather than the current edition.
@@ -459,3 +459,7 @@ The current data set is intentionally local and curated.
   stacked outer padding before safety and interpretation. The lower half of a
   profile should read continuously without decorative whitespace delaying the
   next scientific section.
+- **2026-09-03 — Removed repeated profile disclaimers:** Removed the recurring
+  eligibility-completeness and controlled-safety boundary sentences from every
+  profile. Retain the `Key` eligibility labels and keep the underlying safety
+  summaries limited to controlled-trial evidence.
