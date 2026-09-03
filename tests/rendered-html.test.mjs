@@ -47,8 +47,9 @@ test("every generated trial profile includes an accessible outcome figure", asyn
     assert.equal(response.status, 200, slug);
     const html = await response.text();
     assert.match(html, /data-outcome-figure=/, slug);
-    assert.match(html, /Exact values are printed beside each mark/, slug);
-    assert.match(html, /Source:[\s\S]{0,80}(landmark publication|primary result report)/, slug);
+    assert.match(html, /aria-label="Primary endpoint outcome figure for /, slug);
+    assert.doesNotMatch(html, /<figcaption/, slug);
+    assert.doesNotMatch(html, /Exact values are printed beside each mark/, slug);
     assert.doesNotMatch(html, /class="outcome-axis"/, slug);
     assert.doesNotMatch(html, /(Lower|Higher) values favor the intervention/, slug);
     assert.ok(

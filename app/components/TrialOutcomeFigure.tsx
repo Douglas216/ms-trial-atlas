@@ -10,8 +10,6 @@ type FigureStyle = CSSProperties & Record<`--${string}`, string>;
 type TrialOutcomeFigureProps = {
   figure: TrialOutcomeFigureData;
   studyName: string;
-  sourceUrl: string;
-  sourceLabel: string;
 };
 
 function axisNumber(value: number) {
@@ -119,8 +117,6 @@ function EffectPanel({ panel }: { panel: EffectOutcomePanel }) {
 export default function TrialOutcomeFigure({
   figure,
   studyName,
-  sourceUrl,
-  sourceLabel,
 }: TrialOutcomeFigureProps) {
   return (
     <figure
@@ -148,17 +144,6 @@ export default function TrialOutcomeFigure({
           ),
         )}
       </div>
-
-      <figcaption>
-        <p>
-          Exact values are printed beside each mark. Scales are specific to this endpoint and should
-          not be used for comparisons between trials.
-          {figure.note && <> {figure.note}</>}
-        </p>
-        <a href={sourceUrl} target="_blank" rel="noreferrer">
-          Source: {sourceLabel} <span aria-hidden="true">↗</span>
-        </a>
-      </figcaption>
     </figure>
   );
 }

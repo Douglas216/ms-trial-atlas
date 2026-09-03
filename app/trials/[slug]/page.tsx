@@ -211,8 +211,6 @@ export default async function TrialProfilePage({ params }: PageProps) {
                 <TrialOutcomeFigure
                   figure={outcomeFigure}
                   studyName={trial.studyName}
-                  sourceUrl={trial.resultSourceUrl ?? trial.publication?.url ?? trial.sourceUrls[0]}
-                  sourceLabel={trial.publication ? "landmark publication" : "primary result report"}
                 />
                 <p className="result-effect">{profile.primaryOutcome.effect}</p>
               </div>

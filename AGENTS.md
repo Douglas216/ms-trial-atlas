@@ -463,3 +463,7 @@ The current data set is intentionally local and curated.
   eligibility-completeness and controlled-safety boundary sentences from every
   profile. Retain the `Key` eligibility labels and keep the underlying safety
   summaries limited to controlled-trial evidence.
+- **2026-09-03 — Streamlined outcome and profile ending:** Removed the repeated
+  figure-caption band and its source action because scientific sources remain
+  available in the record rail. Reduced the gap before neighboring-trial
+  navigation so profiles finish without an oversized empty transition.
