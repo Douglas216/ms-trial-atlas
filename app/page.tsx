@@ -1,5 +1,5 @@
 import { TrafficCounter } from "./components/TrafficCounter";
-import { TrialTimeline } from "./components/TrialTimeline";
+import { HomeAtlas } from "./components/HomeAtlas";
 import { trials } from "./data/trials";
 
 export default function HomePage() {
@@ -7,15 +7,8 @@ export default function HomePage() {
 
   return (
     <main className="atlas-page">
-      <header className="hero">
-        <h1>MS Trial Atlas</h1>
-        <p className="hero-subtitle">
-          The pivotal Phase III trials that shaped modern multiple sclerosis treatment.
-        </p>
-      </header>
-
-      <TrialTimeline trials={trials} now={now} />
-    <TrafficCounter path="/" />
+      <HomeAtlas trials={trials} now={now} />
+      <TrafficCounter path="/" />
     </main>
   );
 }

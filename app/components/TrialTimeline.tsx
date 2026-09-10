@@ -178,9 +178,8 @@ function PublicationTooltip({
   );
 }
 
-export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string }) {
+export function TrialTimeline({ trials, now, query = "" }: { trials: Trial[]; now: string; query?: string }) {
   const [tooltip, setTooltip] = useState<TooltipState>(null);
-  const [query, setQuery] = useState("");
   const [sortOrder, setSortOrder] = useState<TrialSortOrder>("newest");
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -341,7 +340,7 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
 
   return (
     <section className="timeline-figure" aria-label="Pivotal MS trial timeline">
-      <div className="atlas-search"><label htmlFor="trial-search">Search trials or therapies</label><input id="trial-search" type="search" value={query} placeholder="Trial name or drug…" onChange={(event) => { setQuery(event.target.value); hideTooltip(); }} /><span role="status">{query && `${sortedDatedTrials.length} matching trials`}</span></div>
+      <span className="search-status" role="status">{query && `${sortedDatedTrials.length} matching trials`}</span>
       <div className="timeline-caption">
         <div className="publication-key">
           <span aria-hidden="true" />

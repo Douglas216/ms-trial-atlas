@@ -114,7 +114,6 @@ export default async function TrialProfilePage({ params }: PageProps) {
         </span>
       </nav>
 
-      <ProfileSearch key={slug} entries={trials.map(({ slug, studyName, drug, nctIds }) => ({ slug, studyName, drug, nctIds }))} />
       <article className="trial-profile">
         <header className="profile-hero">
           <div className="profile-hero-main">
@@ -123,6 +122,8 @@ export default async function TrialProfilePage({ params }: PageProps) {
             <p className="profile-significance">{significance}</p>
           </div>
 
+          <div className="profile-hero-aside">
+            <ProfileSearch key={slug} />
           <dl className="hero-facts">
             <div>
               <dt>Phase</dt>
@@ -140,6 +141,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
               </dd>
             </div>
           </dl>
+          </div>
         </header>
 
         <section className="comparison-section" aria-labelledby="comparison-title">
