@@ -1,4 +1,5 @@
 "use client";
+import { matchesTrial } from "../lib/search";
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -179,6 +180,7 @@ function PublicationTooltip({
 
 export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string }) {
   const [tooltip, setTooltip] = useState<TooltipState>(null);
+  const [query, setQuery] = useState("");
   const [sortOrder, setSortOrder] = useState<TrialSortOrder>("newest");
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -191,7 +193,7 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
   );
 
   const sortedDatedTrials = useMemo(() => {
-    const sorted = [...datedTrials];
+    const sorted = datedTrials.filter((trial) => matchesTrial(trial, query));
 
     if (sortOrder === "alphabetical") {
       return sorted.sort((a, b) =>
@@ -204,7 +206,7 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
         parseDate(a.startDate!).getTime() - parseDate(b.startDate!).getTime();
       return sortOrder === "newest" ? -difference : difference;
     });
-  }, [datedTrials, sortOrder]);
+  }, [datedTrials, sortOrder, query]);
 
   const undatedTrials = useMemo(
     () => trials.filter((trial) => !trial.startDate || !trial.primaryCompletionDate),
@@ -339,6 +341,7 @@ export function TrialTimeline({ trials, now }: { trials: Trial[]; now: string })
 
   return (
     <section className="timeline-figure" aria-label="Pivotal MS trial timeline">
+      <div className="atlas-search"><label htmlFor="trial-search">Search trials or therapies</label><input id="trial-search" type="search" value={query} placeholder="Trial name or drug…" onChange={(event) => { setQuery(event.target.value); hideTooltip(); }} /><span role="status">{query && `${sortedDatedTrials.length} matching trials`}</span></div>
       <div className="timeline-caption">
         <div className="publication-key">
           <span aria-hidden="true" />

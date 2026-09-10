@@ -1,6 +1,6 @@
 # MS Trial Atlas: Durable Project Context
 
-Last updated: 2026-09-03
+Last updated: 2026-09-10
 
 This file is the source of truth for product intent, scientific-data rules, and
 decisions that should survive across Codex tasks. Read it before making changes.
@@ -118,10 +118,10 @@ The current product consists of:
 Do not expand the product without a user request. Current non-goals include:
 
 - cataloging every MS trial;
-- search, filters, or comparison tools;
+- comparison tools or filters beyond trial/therapy search;
 - card grids, glossary, or educational summary panels;
 - authentication or user accounts;
-- a database, backend API, or live ClinicalTrials.gov integration;
+- a scientific-content database or live ClinicalTrials.gov integration;
 - AI features;
 - exhaustive protocol reproductions, investigator directories, or regulatory
   dossiers.
@@ -467,3 +467,5 @@ The current data set is intentionally local and curated.
   figure-caption band and its source action because scientific sources remain
   available in the record rail. Reduced the gap before neighboring-trial
   navigation so profiles finish without an oversized empty transition.
+
+- **2026-09-10 — Search and public readership:** Homepage search filters trial/therapy names and registry identifiers while retaining the full time axis. Profiles offer atlas search and keyword highlighting within the current profile. Public bottom-right counters show site-wide unique browsers and sessions on the homepage, and page views on profiles. D1 stores anonymous browser identifiers, last page-view times, session totals, and deduplicated page-view events; scientific data stays local. A first-party one-year cookie estimates unique browsers, sessions restart after 30 minutes without a page view, and no IP addresses are stored. Counts begin at first tracked activity and expose the counting method. Suggestions remain out of scope.

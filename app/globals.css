@@ -2151,3 +2151,24 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Search and quiet public readership statistics. */
+.atlas-search { margin: 0 0 1rem; max-width: 36rem; }
+.atlas-search label { display: block; font-size: .875rem; margin-bottom: .4rem; }
+.atlas-search input, .atlas-search select, .find-controls button { font: inherit; color: inherit; border: 1px solid #c5cec9; background: #fffefa; border-radius: .3rem; padding: .6rem .75rem; }
+.atlas-search input { width: 100%; min-width: 0; }
+.atlas-search input:focus-visible, .atlas-search select:focus-visible, .find-controls button:focus-visible { outline: 2px solid #426b5c; outline-offset: 3px; }
+.atlas-search > span, .find-controls, .search-results > span { font-size: .875rem; }
+.search-row { display: flex; gap: .5rem; }
+.find-controls { display: flex; align-items: center; gap: .5rem; margin-top: .5rem; }
+.find-controls button { padding: .3rem .6rem; cursor: pointer; }
+.find-controls button:disabled { opacity: .45; cursor: default; }
+.search-results { max-height: 19rem; overflow: auto; border: 1px solid #c5cec9; padding: .75rem; margin-top: .5rem; }
+.search-results a { display: block; padding: .6rem 0; }
+.search-results small { display: block; }
+::highlight(atlas-matches) { background: #f1df91; color: #182f2b; }
+.traffic-counter { margin: 1.5rem 0 0 auto; width: fit-content; max-width: 30rem; text-align: right; font-size: .875rem; color: #52645d; }
+.traffic-counter span { margin: 0 .5rem; }
+.traffic-counter summary { cursor: pointer; margin-top: .35rem; font-size: .8rem; }
+.traffic-counter p { text-align: left; line-height: 1.5; }
+@media (max-width: 520px) { .search-row { flex-direction: column; } .traffic-counter { max-width: 100%; } }

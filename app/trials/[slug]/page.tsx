@@ -1,4 +1,6 @@
-import type { Metadata } from "react";
+import { TrafficCounter } from "../../components/TrafficCounter";
+import { ProfileSearch } from "../../components/ProfileSearch";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import TrialOutcomeFigure from "../../components/TrialOutcomeFigure";
@@ -112,6 +114,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
         </span>
       </nav>
 
+      <ProfileSearch key={slug} entries={trials.map(({ slug, studyName, drug, nctIds }) => ({ slug, studyName, drug, nctIds }))} />
       <article className="trial-profile">
         <header className="profile-hero">
           <div className="profile-hero-main">
@@ -448,6 +451,7 @@ export default async function TrialProfilePage({ params }: PageProps) {
           )}
         </nav>
       </article>
+    <TrafficCounter key={slug} path={`/trials/${slug}`} />
     </main>
   );
 }

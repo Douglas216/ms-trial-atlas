@@ -1,3 +1,4 @@
+import { TrafficCounter } from "./components/TrafficCounter";
 import { TrialTimeline } from "./components/TrialTimeline";
 import { trials } from "./data/trials";
 
@@ -14,6 +15,7 @@ export default function HomePage() {
       </header>
 
       <TrialTimeline trials={trials} now={now} />
+    <TrafficCounter path="/" />
     </main>
   );
 }
