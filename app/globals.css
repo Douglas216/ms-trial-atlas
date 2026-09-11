@@ -2244,8 +2244,6 @@ a {
 ::highlight(atlas-matches) { background: #f1df91; color: #182f2b; }
 .traffic-counter { margin: 1.5rem 0 0 auto; width: fit-content; max-width: 30rem; text-align: right; font-size: .875rem; color: #52645d; }
 .traffic-counter span { margin: 0 .5rem; }
-.traffic-counter summary { cursor: pointer; margin-top: .35rem; font-size: .8rem; }
-.traffic-counter p { text-align: left; line-height: 1.5; }
 .suggestion-link {
   position: fixed;
   z-index: 20;
