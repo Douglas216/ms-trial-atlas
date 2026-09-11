@@ -40,7 +40,14 @@ const worker = {
       }, allowedWidths);
     }
 
-    return handler.fetch(request, env, ctx);
+    const response = await handler.fetch(request, env, ctx);
+    if (url.pathname.startsWith("/suggestions") || url.pathname === "/api/suggestions") {
+      const privateResponse = new Response(response.body, response);
+      privateResponse.headers.set("Cache-Control", "private, no-store");
+      privateResponse.headers.set("X-Robots-Tag", "noindex, nofollow");
+      return privateResponse;
+    }
+    return response;
   },
 };
 

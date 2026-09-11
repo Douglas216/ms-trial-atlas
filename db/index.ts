@@ -3,6 +3,10 @@ import { drizzle } from "drizzle-orm/d1";
 import * as schema from "./schema";
 
 export function getDb() {
+  return drizzle(getRawDb(), { schema });
+}
+
+export function getRawDb() {
   const bindings = env as unknown as { DB?: D1Database };
 
   if (!bindings.DB) {
@@ -11,5 +15,5 @@ export function getDb() {
     );
   }
 
-  return drizzle(bindings.DB, { schema });
+  return bindings.DB;
 }

@@ -113,6 +113,7 @@ The current product consists of:
 
 - a homepage with the title, subtitle, and interactive interval timeline;
 - one complete educational profile route per trial;
+- a public suggestion form linked from the homepage and trial profiles, with a private owner-only inbox;
 - locally curated structured data shared by the timeline and profiles.
 
 Do not expand the product without a user request. Current non-goals include:
@@ -120,7 +121,7 @@ Do not expand the product without a user request. Current non-goals include:
 - cataloging every MS trial;
 - comparison tools or filters beyond trial/therapy search;
 - card grids, glossary, or educational summary panels;
-- authentication or user accounts;
+- public user accounts (owner-only suggestion review uses ChatGPT sign-in);
 - a scientific-content database or live ClinicalTrials.gov integration;
 - AI features;
 - exhaustive protocol reproductions, investigator directories, or regulatory
@@ -329,6 +330,8 @@ Key files:
 - `app/page.tsx`: homepage composition and current-date value;
 - `app/trials/[slug]/page.tsx`: reusable, statically generated trial profiles;
 - `app/globals.css`: visual system and responsive behavior;
+- `app/suggestions/page.tsx` and `app/api/suggestions/route.ts`: public suggestion form and write-only submission endpoint;
+- `app/suggestions/review/page.tsx`: owner-authorized, uncached inbox; names, emails, and comments never appear on public pages;
 - `.openai/hosting.json`: existing Sites project binding; reuse it.
 
 The project uses Next-style routes through vinext and is deployed with Sites.
@@ -472,3 +475,4 @@ The current data set is intentionally local and curated.
 
 - **2026-09-10 — Compact homepage search:** Place the homepage search in the title row's top-right corner as a small magnifying-glass field with `Trial name or drug…` placeholder. Keep its accessible label without a visible heading or separate search section so it adds no vertical band above the timeline.
 - **2026-09-10 — Profile search and teaching palette:** Align the compact profile search with the top of the trial title in the right column. Profile search only finds keywords within the current trial, with no scope dropdown; atlas-wide trial/therapy search remains on the homepage. Compact the right-column facts and bottom hero padding to bring `What was compared` closer to the significance statement. Use the reference `figure-1-ms-trial-atlas-v5.png` palette throughout profiles: teal for identity, population, eligibility, and records; blue for comparison and primary results; terracotta for safety; purple for interpretation. Apply colors through headings and restrained panel tints without changing scientific content, figure scales, or the compact results-first hierarchy.
+- **2026-09-10 — Public suggestions and private review:** A small fixed `Suggest an update` link appears at the lower left of public pages and opens a form that records an optional name, an anonymous flag, required email, comment, and the source page. Suggestions are stored in D1. `/suggestions/review` is a ChatGPT sign-in-gated route that also checks the authenticated email against the secret `SUGGESTIONS_ADMIN_EMAIL` environment value before listing submissions; do not expose suggestion records through public routes.
