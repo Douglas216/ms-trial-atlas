@@ -2244,6 +2244,24 @@ a {
 ::highlight(atlas-matches) { background: #f1df91; color: #182f2b; }
 .traffic-counter { margin: 1.5rem 0 0 auto; width: fit-content; max-width: 30rem; text-align: right; font-size: .875rem; color: #52645d; }
 .traffic-counter span { margin: 0 .5rem; }
+.atlas-footer { display: grid; justify-items: end; gap: .5rem; }
+.atlas-footer .traffic-counter { margin-top: 1.5rem; }
+.atlas-footer > a { color: var(--accent-dark); font-size: .825rem; font-weight: 600; }
+.creators-page { width: min(1100px, 100%); margin: 0 auto; padding: clamp(1.5rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2.5rem) clamp(3rem, 7vw, 6rem); }
+.creators-nav { padding-bottom: 1.25rem; border-bottom: 1px solid var(--line); font-family: var(--font-geist-mono), monospace; font-size: .85rem; letter-spacing: .04em; }
+.creators-nav a, .creator-links a { color: var(--accent-dark); }
+.creators-header { max-width: 48rem; padding: clamp(2.5rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 3.5rem); }
+.creators-header h1 { margin: .4rem 0 .85rem; color: var(--navy); font-size: clamp(3rem, 8vw, 6.4rem); letter-spacing: -.065em; line-height: .92; }
+.creators-header > p:last-child { margin: 0; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.5; }
+.creator-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.creator-card { display: grid; grid-template-columns: 9.25rem minmax(0, 1fr); gap: 1.25rem; min-width: 0; padding: clamp(1.25rem, 3vw, 2rem); border-top: 3px solid var(--accent); background: var(--paper-raised); }
+.creator-card img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; background: #eee; }
+.creator-card h2 { margin: 0 0 .6rem; color: var(--navy); font-size: 1.5rem; letter-spacing: -.035em; }
+.creator-card p { margin: 0; line-height: 1.55; }
+.creator-card .creator-role { margin-bottom: 1rem; color: var(--accent-dark); font-weight: 620; }
+.creator-links { display: flex; flex-wrap: wrap; gap: .75rem 1rem; margin-top: 1.25rem; font-size: .875rem; font-weight: 650; }
+@media (max-width: 800px) { .creator-grid { grid-template-columns: 1fr; } }
+@media (max-width: 460px) { .creator-card { grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; } .creator-card h2 { font-size: 1.25rem; } }
 .suggestion-link {
   position: fixed;
   z-index: 20;
