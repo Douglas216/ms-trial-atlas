@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const creators = [
   {
@@ -40,7 +39,9 @@ export default function CreatorsPage() {
       <section className="creator-grid" aria-label="Creators">
         {creators.map((creator) => (
           <article className="creator-card" key={creator.name}>
-            <Image src={creator.image} alt={`Portrait of ${creator.name}`} width={244} height={244} />
+            {/* Portraits use direct static paths so they remain reliable on every custom domain. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={creator.image} alt={`Portrait of ${creator.name}`} width="244" height="244" />
             <div>
               <h2>{creator.name}</h2>
               <p className="creator-role">{creator.role}</p>
